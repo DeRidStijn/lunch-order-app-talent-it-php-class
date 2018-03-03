@@ -4,13 +4,13 @@ Hoi allemaal,
 
 Ik heb voor jullie de slides klaargezet zodat jullie die kunnen downloaden.
 
-1. [Introductie](https://blob.in2itvof.com/in2it-training/PHPBootcamp/01_Introduction.pdf)
-2. [Hello World](https://blob.in2itvof.com/in2it-training/PHPBootcamp/02_Hello_World.pdf)
-3. [Strings & Functions](https://blob.in2itvof.com/in2it-training/PHPBootcamp/03_Strings_and_functions.pdf)
-4. [Arrays & Functions](https://blob.in2itvof.com/in2it-training/PHPBootcamp/04_Arrays_and_functions.pdf)
-5. [Cookies & OOP](https://blob.in2itvof.com/in2it-training/PHPBootcamp/05_Cookies_and_OOP.pdf)
-6. [Sessions & MySQL](https://blob.in2itvof.com/in2it-training/PHPBootcamp/06_Sessions_and_MySQL.pdf)
-7. [Composer & PHP-FIG](https://blob.in2itvof.com/in2it-training/PHPBootcamp/07_Composer_and_PHP-FIG.pdf)
+1. [Introductie](https://cdn.in2it.be/in2it-training/PHPBootcamp/01_Introduction.pdf)
+2. [Hello World](https://cdn.in2it.be/in2it-training/PHPBootcamp/02_Hello_World.pdf)
+3. [Strings & Functions](https://cdn.in2it.be/in2it-training/PHPBootcamp/03_Strings_and_functions.pdf)
+4. [Arrays & Functions](https://cdn.in2it.be/in2it-training/PHPBootcamp/04_Arrays_and_functions.pdf)
+5. [Cookies & OOP](https://cdn.in2it.be/in2it-training/PHPBootcamp/05_Cookies_and_OOP.pdf)
+6. [Sessions & MySQL](https://cdn.in2it.be/in2it-training/PHPBootcamp/06_Sessions_and_MySQL.pdf)
+7. [Composer & PHP-FIG](https://cdn.in2it.be/in2it-training/PHPBootcamp/07_Composer_and_PHP-FIG.pdf)
 
 Vermits jullie maandag op jullie eigen aangewezen zijn en ik remote via Slack bereikbaar ben om vragen te beantwoorden heb ik ook een opdracht uitgewerkt waar we afgelopen week over gesproken hebben: de broodjes bestel app.
 
