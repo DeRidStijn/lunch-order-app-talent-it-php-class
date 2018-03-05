@@ -22,5 +22,6 @@
         function getNaam() {
             return $this->naam;
         }
+        
     }
 
