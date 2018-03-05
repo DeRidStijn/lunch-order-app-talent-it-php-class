@@ -5,6 +5,7 @@ session_start();
 require_once('Brood.php');
 require_once('Order.php');
 require_once('Validatie.php');
+require_once('file_handler.php');
 
 if([] !== $_POST) {
 
@@ -38,19 +39,20 @@ if([] !== $_POST) {
 	$orderValidator = new orderValidator($myOrder);
 	$errors = [];
 
-	if (!$orderValidator->isValid()) {
+	if ($orderValidator->isValid()) {
+		foreach ($broodjes as $broodje) {
+			$broodjeValidator = New broodValidator($broodje);
+			if(!$broodValidator->isValid()) {
+				$errors[] = $broodValidator->getErrors();
+			}
+		}
+    } else {
         $errors[] = $orderValidator->getErrors();
     }
 
-    foreach ($broodjes as $broodje) {
-		$broodValidator = New broodValidator($broodje);
-		if(!$broodValidator->isValid()) {
-			$errors[] = $broodValidator->getErrors();
-		}
-	}
-
     if([] === $errors) {
-		var_dump($myOrder);
+		$fileHandler->create();
+		Header('Location: index.php');
 	} else {
 		$_SESSION['errors'] = $errors;
         Header('Location: index.php');

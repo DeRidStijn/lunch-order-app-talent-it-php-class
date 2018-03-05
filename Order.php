@@ -1,9 +1,9 @@
 <?php
 
     class Order {
-        protected $naam = '';
-        protected $soep = false;
-        protected $broodjes = [];
+        protected $naam;
+        protected $soep;
+        protected $broodjes;
 
 
         function __construct(string $naam, bool $soep, array $broodjes) {
@@ -22,5 +22,6 @@
         function getNaam() {
             return $this->naam;
         }
+        
     }
 
