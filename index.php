@@ -72,6 +72,17 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 									</div>
 								</div>
 							</div>
+							<div class="col-md-2 mb-3">
+								<label for="fitness_1">Fitness</label>
+								<div id="fitnessContainer">
+									<div class="input-group mb-3">
+										<select class="custom-select" id="fitness_1" name="fitness_1">
+											<option value="1" selected>Wit</option>
+											<option value="0">Bruin</option>
+										</select>
+									</div>
+								</div>
+							</div>
 							<div class="col-md-6 mb-3">
 								<label for="aantal_1">Type</label>
 								<div id="typeContainer">
@@ -123,6 +134,7 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 		var groottecode = $('#grootteContainer').html().replace("grootte_1", "grootte_XXX");
 		var smoscode = $('#smosContainer').html().replace("smos_1", "smos_XXX");
 		var typecode = $('#typeContainer').html().replace("type_1", "type_XXX");
+		var fitnesscode = $('#fitnessContainer').html().replace("fitness_1", "fitness_XXX");
 
 		$(function() {
 			$('#addBrood').on('click', function(e) {
@@ -132,10 +144,12 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 				var myGrootte = groottecode.replace("XXX", broodjesteller);
 				var mySmos = smoscode.replace("XXX", broodjesteller);
 				var myType = typecode.replace("XXX", broodjesteller);
+				var myFitness = fitnesscode.replace("XXX", broodjesteller);
 				$('#aantalContainer').append(myAantal);
 				$('#grootteContainer').append(myGrootte);
 				$('#smosContainer').append(mySmos);
 				$('#typeContainer').append(myType);
+				$('#fitnessContainer').append(myFitness);
 			});
 		});
 
