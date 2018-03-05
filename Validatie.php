@@ -49,7 +49,9 @@ class Validatie
 	}
 }
 
-// TEST CODE
+header("Location: index.php");
+
+/*// TEST CODE
 
 $toValidateStrings = ['martino', 'beenham', 'hesp'];
 $toValidateNumbers = [5, 1.3, 8, 9.23, 'hesp', -6];
@@ -58,4 +60,4 @@ $ToValidate = new Validatie($toValidateStrings, $toValidateNumbers);
 echo $ToValidate->isString();
 echo '<br>';
 echo $ToValidate->isNumber();
-/*echo $ToValidate->errorMessage;*/
+/*echo $ToValidate->errorMessage;*/*/
