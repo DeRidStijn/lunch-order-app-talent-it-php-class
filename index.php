@@ -83,7 +83,7 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 									</div>
 								</div>
 							</div>
-							<div class="col-md-6 mb-3">
+							<div class="col-md-4 mb-3">
 								<label for="aantal_1">Type</label>
 								<div id="typeContainer">
 									<div class="input-group mb-3">
