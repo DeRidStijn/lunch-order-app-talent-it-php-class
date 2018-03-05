@@ -7,7 +7,7 @@ session_start();
 
 $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "Salami", "Kipfilet"];
 
-if([] !== $_SESSION['order'] && NULL !== $_SESSION['order']) {
+if(!empty($_SESSION['order'])) {
 	$myOrder = $_SESSION['order'];
 }
 
@@ -60,7 +60,7 @@ if([] !== $_SESSION['order'] && NULL !== $_SESSION['order']) {
 						<div class="col-md-12 mb-3">
 							<label for="cc-name">Naam</label>
 							<input type="text" class="form-control" id="naam" name="naam" placeholder="Bv. John Doe" <?php
-							if([] !== $myOrder) {
+							if(!empty($myOrder)) {
 								echo 'value="' . $myOrder->getNaam() . '"';
 							} ?> required>
 							<div class="invalid-feedback">
@@ -77,7 +77,7 @@ if([] !== $_SESSION['order'] && NULL !== $_SESSION['order']) {
 								<label for="aantal_1">Aantal</label>
 								<div id="aantalContainer">
 									<?php
-									if([] !== $myOrder) {
+									if(!empty($myOrder)) {
 										$broodjesteller = 0;
 										foreach ($myOrder->getBroodjes() as $broodje) {
 											$broodjesteller++;
@@ -97,7 +97,7 @@ if([] !== $_SESSION['order'] && NULL !== $_SESSION['order']) {
 								<label for="grootte_1">Grootte</label>
 								<div id="grootteContainer">
 									<?php
-									if([] !== $myOrder) {
+									if(!empty($myOrder)) {
 										$broodjesteller = 0;
 										foreach ($myOrder->getBroodjes() as $broodje) {
 											$broodjesteller++;
@@ -127,7 +127,7 @@ if([] !== $_SESSION['order'] && NULL !== $_SESSION['order']) {
 								<label for="smos_1">Smos</label>
 								<div id="smosContainer">
 									<?php
-									if([] !== $myOrder) {
+									if(!empty($myOrder)) {
 										$broodjesteller = 0;
 										foreach ($myOrder->getBroodjes() as $broodje) {
 											$broodjesteller++;
@@ -157,7 +157,7 @@ if([] !== $_SESSION['order'] && NULL !== $_SESSION['order']) {
 								<label for="fitness_1">Fitness</label>
 								<div id="fitnessContainer">
 									<?php
-									if([] !== $myOrder) {
+									if(!empty($myOrder)) {
 										$broodjesteller = 0;
 										foreach ($myOrder->getBroodjes() as $broodje) {
 											$broodjesteller++;
@@ -187,7 +187,7 @@ if([] !== $_SESSION['order'] && NULL !== $_SESSION['order']) {
 								<label for="type_<?php echo $broodjesteller; ?>">Type</label>
 								<div id="typeContainer">
 									<?php
-									if([] !== $myOrder) {
+									if(!empty($myOrder)) {
 										$broodjesteller = 0;
 										foreach ($myOrder->getBroodjes() as $broodje) {
 											$broodjesteller++;
@@ -233,7 +233,7 @@ if([] !== $_SESSION['order'] && NULL !== $_SESSION['order']) {
 
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input" id="soepvdag" name="soepvdag" <?php
-							if([] !== $myOrder) {
+							if(!empty($myOrder)) {
 								if($myOrder->getSoep()) {
 									echo 'checked';
 								}
