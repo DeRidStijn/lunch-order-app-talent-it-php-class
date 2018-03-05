@@ -27,13 +27,19 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 			<p class="lead">Gelieve onderstaand formulier in te vullen om je broodjes te bestellen.</p>
 		</div>
 		<?php
-			if( [] !== $_SESSION['errors']){
-
+			if ([] !== $_SESSION['errors']) {
 				foreach ($_SESSION['errors'] as $error) {
-					var_dump($error);
+					?>
+					<div class="alert alert-danger">
+						<?php
+						foreach ($error as $errormessage) {
+							echo $errormessage . '<br />';
+						}
+						?>
+					</div>
+					<?php
 				}
 			}
-
 		?>
 		<form method="POST" action="broodje_verwerken.php">
 			<input type="number" value="1" id="aantalbroodjes" name="aantalbroodjes" style="display: none;" />
