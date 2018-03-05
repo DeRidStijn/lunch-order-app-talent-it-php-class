@@ -260,7 +260,7 @@ if(!empty($_SESSION['order'])) {
 
 	<script type="text/javascript">
 		
-		var broodjesteller = <?php echo $broodjesteller; ?>;
+		var broodjesteller = 1;
 
 		var aantalcode = $('#broodje_1 #aantalContainer').html().replace(/aantal_1/g, "aantal_XXX");
 		var groottecode = $('#broodje_1 #grootteContainer').html().replace(/grootte_1/g, "grootte_XXX");
