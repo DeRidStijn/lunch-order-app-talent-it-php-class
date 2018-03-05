@@ -1,22 +1,25 @@
 <?php
-class Sessionhandler{
-
+class Sessionhandler extends Order{
+protected $order;
     function __construct(string $sessionId) //nieuwe persoon aanmaken 
     {
         session_id($sessionId);
+        $this->order = new Order();
     }
 
-    public function fillBestelling(bool $isSmos, bool $isFitness, string $typeBeleg, bool $isBaguette, string $naam)
+    public function setOrder(Order $myOrder)
     {
-        $_SESSION['bestelling']['isSmos'] = $isSmos;    // is dit nodig?
-        $_SESSION['bestelling']['isFitness'] = $isFitness;
-        $_SESSION['bestelling']['typeBeleg'] = $typeBeleg;
-        $_SESSION['bestelling']['isBaguette'] = $isBaguette;
-        $_SESSION['bestelling']['naam'] = $naam;
-        header('index.php');
+        $this->order = $myOrder;
+        $_SESSION['order'] = $this->order;
+    }
+
+    public function setError(array $errormessage = [])
+    {
+        $_SESSION['errors'][]= $errormessage;
+    }
+    public function clearErrors()
+    {
+        $_SESSION['errors'] = [];
     }
 
 } 
-/*
-    sessie voor bestelde broodjes + gegevens persoon
-*/
