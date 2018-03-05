@@ -7,19 +7,19 @@ class Broodje
     protected $typeBeleg;
     protected $baguette;
 
-    function __construct(bool $smos, bool $soep, bool $fitness, string $typeBeleg, bool $baguette)
+    function __construct(bool $smos, bool $fitness, string $typeBeleg, bool $baguette)
     {
         $this->soms = $smos;
-        $this->soep = $soep;
         $this->fitness = $fitness;
         $this->typeBeleg = $typeBeleg;
+        $this->baguette = $baguette;
     }
     
     function addSmos() : bool
     {
         $this->smos;
     }
-    
+
     function addFitness() : bool
     {
         $this->fitness;
