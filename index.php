@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "Salami", "Kipfilet"];
 
 ?>
