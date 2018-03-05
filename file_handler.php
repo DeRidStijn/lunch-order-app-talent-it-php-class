@@ -1,5 +1,9 @@
 <?php
 
+    require_once('Order.php');
+    require_once('broodje_verwerken.php');
+
+
     class FileHandler {
         protected $orderInfo = '';
         protected $file_name = 'orders.txt';
@@ -28,9 +32,7 @@
 
     }
 
-    $fileHandler = new FileHandler(date('l jS \of F Y h:i:s A') . ' -- broodje martino' . "\r\n");
-    
-    $fileHandler->create();
+    $fileHandler = new FileHandler(date('l jS \of F Y h:i:s A') . $myOrder . "\r\n");
 
 
 
