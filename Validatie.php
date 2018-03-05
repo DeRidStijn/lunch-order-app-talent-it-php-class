@@ -89,7 +89,7 @@ class broodValidator extends Brood {
 class orderValidator extends Order {
 
 	protected $order;
-	protected $errors:
+	protected $errors;
 
 	public function __construct(Order $order)
 	{
