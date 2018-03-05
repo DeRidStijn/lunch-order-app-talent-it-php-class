@@ -2,8 +2,6 @@
 
 class Validatie
 {
-	/*protected $filters;
-	protected $validators;*/
 	protected $strings;
 	protected $numbers;
 	public $errorMessage = '';
@@ -38,16 +36,3 @@ class Validatie
 		}
 	}
 }
-
-/*header("Location: index.php");
-*/
-// TEST CODE
-
-/*$toValidateStrings = ['martino', 'beenham', 'hesp'];
-$toValidateNumbers = [5, 1.3, 8, 9.23, 'hesp', -6];
-$ToValidate = new Validatie($toValidateStrings, $toValidateNumbers);
-
-echo $ToValidate->isString();
-echo '<br>';
-echo $ToValidate->isNumber();
-/*echo $ToValidate->errorMessage;*/*/
