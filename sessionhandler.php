@@ -5,16 +5,16 @@
 session_start();
 if (isset($_POST['persoon']))
 {
-    $_SESSION['persoon']['naam'] = $_POST['persoon']['naam'];
-    $_SESSION['persoon']['voornaam'] = $_POST['persoon']['voornaam'];
-    $_SESSION['persoon']['email'] = $_POST['persoon']['email'];
+    $_SESSION['persoon']['naam'] = htmlspecialchars ($_POST['persoon']['naam']);
+    $_SESSION['persoon']['voornaam'] = htmlspecialchars ($_POST['persoon']['voornaam']);
+    $_SESSION['persoon']['email'] = htmlspecialchars ($_POST['persoon']['email']);
     header('index.php');
 }
 if (isset($_POST["bestelling"]))
 {
-    $_SESSION['bestelling']['isSmos'] = $_POST['bestelling']['isSmos'];
-    $_SESSION['bestelling']['isFitness'] = $_POST['bestelling']['isFitness'];
-    $_SESSION['bestelling']['typeBeleg'] = $_POST['bestelling']['typeBeleg'];
-    $_SESSION['bestelling']['isBaguette'] = $_POST['bestelling']['isBaguette'];
+    $_SESSION['bestelling']['isSmos'] = htmlspecialchars ($_POST['bestelling']['isSmos']);
+    $_SESSION['bestelling']['isFitness'] = htmlspecialchars ($_POST['bestelling']['isFitness']);
+    $_SESSION['bestelling']['typeBeleg'] = htmlspecialchars ($_POST['bestelling']['typeBeleg']);
+    $_SESSION['bestelling']['isBaguette'] = htmlspecialchars ($_POST['bestelling']['isBaguette']);
     header('index.php');
 }
