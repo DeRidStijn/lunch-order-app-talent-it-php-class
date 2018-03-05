@@ -7,7 +7,6 @@ if (isset($_POST['persoon']))
 {
     $_SESSION['persoon']['naam'] = htmlspecialchars ($_POST['persoon']['naam']);
     $_SESSION['persoon']['voornaam'] = htmlspecialchars ($_POST['persoon']['voornaam']);
-    $_SESSION['persoon']['email'] = htmlspecialchars ($_POST['persoon']['email']);
     header('index.php');
 }
 if (isset($_POST["bestelling"]))

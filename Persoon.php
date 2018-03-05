@@ -8,11 +8,10 @@ class Persoon
     public $email;
     // public $potje;
 
-    function __construct(string $naam, string $voornaam, string $email) //nieuwe persoon aanmaken 
+    function __construct(string $naam, string $voornaam) //nieuwe persoon aanmaken 
     {
         $this->naam = $naam;
         $this->voornaam = $voornaam;
-        $this->email = $email;
         // $this->potje = $potje;
     }
 
@@ -29,10 +28,6 @@ class Persoon
     public function getVoornaam()
     {
         return $voornaam;
-    }
-    public function getEmail()
-    {
-        return $email;
     }
     /*public function getPotje()
     {
