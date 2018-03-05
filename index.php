@@ -130,21 +130,21 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 		
 		var broodjesteller = 1;
 
-		var aantalcode = $('#aantalContainer').html().replace("aantal_1", "aantal_XXX");
-		var groottecode = $('#grootteContainer').html().replace("grootte_1", "grootte_XXX");
-		var smoscode = $('#smosContainer').html().replace("smos_1", "smos_XXX");
-		var typecode = $('#typeContainer').html().replace("type_1", "type_XXX");
-		var fitnesscode = $('#fitnessContainer').html().replace("fitness_1", "fitness_XXX");
+		var aantalcode = $('#aantalContainer').html().replaceAll("aantal_1", "aantal_XXX");
+		var groottecode = $('#grootteContainer').html().replaceAll("grootte_1", "grootte_XXX");
+		var smoscode = $('#smosContainer').html().replaceAll("smos_1", "smos_XXX");
+		var typecode = $('#typeContainer').html().replaceAll("type_1", "type_XXX");
+		var fitnesscode = $('#fitnessContainer').html().replaceAll("fitness_1", "fitness_XXX");
 
 		$(function() {
 			$('#addBrood').on('click', function(e) {
 				e.preventDefault();
 				++broodjesteller;
-				var myAantal = aantalcode.replace("XXX", broodjesteller);
-				var myGrootte = groottecode.replace("XXX", broodjesteller);
-				var mySmos = smoscode.replace("XXX", broodjesteller);
-				var myType = typecode.replace("XXX", broodjesteller);
-				var myFitness = fitnesscode.replace("XXX", broodjesteller);
+				var myAantal = aantalcode.replaceAll("XXX", broodjesteller);
+				var myGrootte = groottecode.replaceAll("XXX", broodjesteller);
+				var mySmos = smoscode.replaceAll("XXX", broodjesteller);
+				var myType = typecode.replaceAll("XXX", broodjesteller);
+				var myFitness = fitnesscode.replaceAll("XXX", broodjesteller);
 				$('#aantalContainer').append(myAantal);
 				$('#grootteContainer').append(myGrootte);
 				$('#smosContainer').append(mySmos);
