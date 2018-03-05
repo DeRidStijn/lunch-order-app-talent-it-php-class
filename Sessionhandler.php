@@ -1,4 +1,6 @@
 <?php
+/* deze klasse wordt niet gebruikt wegens het gebruik van $_SESSION */
+
 class Sessionhandler extends Order{
 protected $order;
     function __construct(string $sessionId) //nieuwe persoon aanmaken 
@@ -21,5 +23,8 @@ protected $order;
     {
         $_SESSION['errors'] = [];
     }
+    public function getOrder()
+    {
 
+    }
 } 
