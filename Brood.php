@@ -1,6 +1,6 @@
 <?php
 
-class Broodje
+class Brood
 {
     protected $smos;
     protected $fitness;
@@ -9,30 +9,30 @@ class Broodje
 
     function __construct(bool $smos, bool $fitness, string $typeBeleg, bool $baguette)
     {
-        $this->soms = $smos;
+        $this->smos = $smos;
         $this->fitness = $fitness;
         $this->typeBeleg = $typeBeleg;
         $this->baguette = $baguette;
     }
     
-    function addSmos() : bool
+    function getSmos() : bool
     {
-        $this->smos;
+        return $this->smos;
     }
 
-    function addFitness() : bool
+    function getFitness() : bool
     {
-        $this->fitness;
+        return $this->fitness;
     }
 
-    function addTypeBeleg() : string
+    function getTypeBeleg() : string
     {
-        $this->typeBeleg;
+        return $this->typeBeleg;
     }
 
-    function addBaguette() : bool
+    function getBaguette() : bool
     {
-        $this->baguette;
+        return $this->baguette;
     }
 }
 
