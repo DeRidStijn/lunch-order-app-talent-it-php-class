@@ -2,8 +2,11 @@
 
 /*class Validatie
 {
+<<<<<<< HEAD
 	protected $filters;
 	protected $validators;
+=======
+>>>>>>> 08deec239dca2e3b9f29aa60fa2deb25bad83755
 	protected $strings;
 	protected $numbers;
 	public $errorMessage = '';
@@ -37,6 +40,7 @@
 			echo $number;
 		}
 	}
+<<<<<<< HEAD
 }*/
 
 /*header("Location: index.php");
@@ -127,3 +131,4 @@ class orderValidator {
 		return $this->errors;
 	}	
 }
+
