@@ -18,5 +18,9 @@
         function getBroodjes() {
             return $this->broodjes;
         }
+
+        function getNaam() {
+            return $this->naam;
+        }
     }
 
