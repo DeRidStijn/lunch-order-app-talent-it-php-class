@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once('Brood.php');
 require_once('Order.php');
 require_once('Validatie.php');
@@ -31,14 +33,25 @@ if([] !== $_POST) {
 
 	// validator
 
-	$orderValidator = new OrderValidator($myOrder);
+	$orderValidator = new orderValidator($myOrder);
+	$errors = [];
 
 	if ($orderValidator->isValid()) {
-		var_dump($myOrder);
+		foreach ($broodjes as $broodje) {
+			$broodjeValidator = New broodValidator($broodje);
+			if(!$broodValidator->isValid()) {
+				$errors[] = $broodValidator->getErrors();
+			}
+		}
     } else {
-        $errors = $orderValidator->getErrors();
-        $_SESSION['errors'] = $errors;
-        Header('Location: index.php');
+        $errors[] = $orderValidator->getErrors();
     }
+
+    if([] === $errors) {
+		var_dump($myOrder);
+	} else {
+		$_SESSION['errors'] = $errors;
+        Header('Location: index.php');
+	}
 }
 ?>
