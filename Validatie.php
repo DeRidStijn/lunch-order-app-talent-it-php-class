@@ -37,43 +37,43 @@ class broodValidator extends Brood {
 			},
 			'Smos' => function($smos) {
 				if(!is_bool($smos)) {
-					$this->errors['smos'] = 'Geen optie gekozen voor \'Smos\'';
+					$this->errors['smos'] = 'Foutieve waarde voor \'Smos\'';
 					return false;
 				}
 				return true;	
 			},
 			'Fitness' => function($fitness) {
 				if(!is_bool($fitness)) {
-					$this->errors['fitness'] = 'Geen optie gekozen voor \'Fitness\'';
+					$this->errors['fitness'] = 'Foutieve waarde voor \'Fitness\'';
 					return false;
 				}
 				return true;
 			},
 			'Type' => function($type) {
 				if(!is_string($type) || '' === $type) {
-					$this->errors['type'] = 'Foutieve waarde voor \'Type\'';
+					$this->errors['type'] = 'Foutieve waarde voor \'Beleg\'';
 					return false;
 				}
 				return true;
 			}
 		];
-		if(!$validators['Aantal'](getAantalBroodjes())) {
+		if(!$validators['Aantal']($this->brood->getAantalBroodjes())) {
 			$this->errors['aantal'] = 'Aantal is niet correct';
 			return false;
 		}
-		if(!$validators['Grootte'](getBaguette())) {
+		if(!$validators['Grootte']($this->brood->getBaguette())) {
 			$this->errors['grootte'] = 'Grootte is niet correct';
 			return false;
 		}
-		if(!$validators['Smos'](getSmos())) {
+		if(!$validators['Smos']($this->brood->getSmos())) {
 			$this->errors['smos'] = 'Smos is niet correct';
 			return false;
 		}
-		if(!$validators['Fitness'](getFitness())) {
+		if(!$validators['Fitness']($this->brood->getFitness())) {
 			$this->errors['fitness'] = 'Fitness is niet correct';
 			return false;
 		}
-		if(!$validators['Type'](getTypeBeleg())) {
+		if(!$validators['Type']($this->brood->getTypeBeleg())) {
 			$this->errors['type'] = 'Type is niet correct';
 			return false;
 		}

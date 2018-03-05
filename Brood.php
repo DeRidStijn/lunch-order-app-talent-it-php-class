@@ -17,27 +17,27 @@ class Brood
         $this->aantalBroodjes = $aantalBroodjes;
     }
     
-    function getSmos() : bool
+    public function getSmos() : bool
     {
         return $this->smos;
     }
 
-    function getFitness() : bool
+    public function getFitness() : bool
     {
         return $this->fitness;
     }
 
-    function getTypeBeleg() : string
+    public function getTypeBeleg() : string
     {
         return $this->typeBeleg;
     }
 
-    function getBaguette() : bool
+    public function getBaguette() : bool
     {
         return $this->baguette;
     }
 
-    function getAantalBroodjes() : int 
+    public function getAantalBroodjes() : int 
 
     {
         return $this->aantalBroodjes;
