@@ -12,9 +12,9 @@ if (isset($_POST['persoon']))
 }
 if (isset($_POST["bestelling"]))
 {
-    $_SESSION['bestelling']['isSmos'] = '';
-    $_SESSION['bestelling']['isFitness'] = '';
-    $_SESSION['bestelling']['typeBeleg'] = '';
-    $_SESSION['bestelling']['isBaguette'] = '';
+    $_SESSION['bestelling']['isSmos'] = $_POST['bestelling']['isSmos'];
+    $_SESSION['bestelling']['isFitness'] = $_POST['bestelling']['isFitness'];
+    $_SESSION['bestelling']['typeBeleg'] = $_POST['bestelling']['typeBeleg'];
+    $_SESSION['bestelling']['isBaguette'] = $_POST['bestelling']['isBaguette'];
     header('index.php');
 }
