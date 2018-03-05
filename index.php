@@ -184,7 +184,7 @@ if(!empty($_SESSION['order'])) {
 								</div>
 							</div>
 							<div class="col-md-4 mb-3">
-								<label for="type_<?php echo $broodjesteller; ?>">Type</label>
+								<label for="type_1">Type</label>
 								<div id="typeContainer">
 									<?php
 									if(!empty($myOrder)) {
@@ -262,14 +262,7 @@ if(!empty($_SESSION['order'])) {
 		
 		var broodjesteller = <?php echo $broodjesteller; ?>;
 
-		var aantalcode = $('#broodje_1 #aantalContainer').html();
-
-		var jHtmlObject = jQuery(aantalcode);
-		var editor = jQuery("").append(jHtmlObject);
-		editor.find("#div2").remove();
-		var newHtml = editor.html();
-
-		.replace(/aantal_1/g, "aantal_XXX");
+		var aantalcode = $('#broodje_1 #aantalContainer').html().replace(/aantal_1/g, "aantal_XXX");
 		var groottecode = $('#broodje_1 #grootteContainer').html().replace(/grootte_1/g, "grootte_XXX");
 		var smoscode = $('#broodje_1 #smosContainer').html().replace(/smos_1/g, "smos_XXX");
 		var typecode = $('#broodje_1 #typeContainer').html().replace(/type_1/g, "type_XXX");
@@ -278,7 +271,7 @@ if(!empty($_SESSION['order'])) {
 		$(function() {
 			$('#addBrood').on('click', function(e) {
 				e.preventDefault();
-				++broodjesteller;
+				/*++broodjesteller;
 				$('#aantalbroodjes').val(broodjesteller);
 				var myAantal = aantalcode.replace(/XXX/g, broodjesteller);
 				var myGrootte = groottecode.replace(/XXX/g, broodjesteller);
@@ -289,7 +282,7 @@ if(!empty($_SESSION['order'])) {
 				$('#grootteContainer').append(myGrootte);
 				$('#smosContainer').append(mySmos);
 				$('#typeContainer').append(myType);
-				$('#fitnessContainer').append(myFitness);
+				$('#fitnessContainer').append(myFitness);*/
 			});
 		});
 
