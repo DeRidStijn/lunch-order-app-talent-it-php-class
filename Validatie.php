@@ -1,69 +1,16 @@
 <?php
 
-/*class Validatie
-{
-<<<<<<< HEAD
-	protected $filters;
-	protected $validators;
-=======
->>>>>>> 08deec239dca2e3b9f29aa60fa2deb25bad83755
-	protected $strings;
-	protected $numbers;
-	public $errorMessage = '';
+require_once('Brood.php');
+require_once('Order.php');
 
-	public function __construct(array $strings = [], array $numbers = [])
+class broodValidator extends Brood {
+
+	protected $brood;
+	protected $errors;
+
+	public function __construct(Brood $brood)
 	{
-		$this->strings = $strings;
-		$this->numbers = $numbers;
-	}
-
-	public function isString()
-	{
-		foreach ($this->strings as $string) {
-			if(!is_string($string) || '' === $string) {
-				$this->errorMessage = 'You entered an invalid input';
-				return $this->errorMessage;
-			}
-
-			echo $string;
-		}
-	}
-
-	public function isNumber()
-	{
-		foreach ($this->numbers as $number) {
-			if(!is_numeric($number) || $number < 0) {
-				$this->errorMessage = 'You entered an invalid input';
-				return $this->errorMessage;
-			}
-
-			echo $number;
-		}
-	}
-<<<<<<< HEAD
-}*/
-
-/*header("Location: index.php");
-*/
-// TEST CODE
-
-/*$toValidateStrings = ['martino', 'beenham', 'hesp'];
-$toValidateNumbers = [5, 1.3, 8, 9.23, 'hesp', -6];
-$ToValidate = new Validatie($toValidateStrings, $toValidateNumbers);
-
-echo $ToValidate->isString();
-echo '<br>';
-echo $ToValidate->isNumber();
-/*echo $ToValidate->errorMessage;*/
-
-class orderValidator {
-
-	protected $order;
-	protected $errors:
-
-	public function __construct($order)
-	{
-		$this->order = $order;
+		$this->brood = $brood;
 		$this->errors = [];
 	}
 
@@ -82,7 +29,7 @@ class orderValidator {
 				return true;
 			},
 			'Grootte' => function($grootte)	{
-				if(!is_string($grootte) && !ctype_alpha($grootte)) {
+				if(!is_bool($grootte)) {
 					$this->errors['grootte'] = 'Foutieve waarde voor \'Grootte\'';
 					return false;
 				}
@@ -108,7 +55,52 @@ class orderValidator {
 					return false;
 				}
 				return true;
-			},
+			}
+		];
+		if(!$validators['Aantal'](getAantalBroodjes())) {
+			$this->errors['aantal'] = 'Aantal is niet correct';
+			return false;
+		}
+		if(!$validators['Grootte'](getBaguette())) {
+			$this->errors['grootte'] = 'Grootte is niet correct';
+			return false;
+		}
+		if(!$validators['Smos'](getSmos())) {
+			$this->errors['smos'] = 'Smos is niet correct';
+			return false;
+		}
+		if(!$validators['Fitness'](getFitness())) {
+			$this->errors['fitness'] = 'Fitness is niet correct';
+			return false;
+		}
+		if(!$validators['Type'](getTypeBeleg())) {
+			$this->errors['type'] = 'Type is niet correct';
+			return false;
+		}
+	}
+
+	public function getErrors(): array 
+	{
+		return $this->errors;
+	}
+
+}
+
+class orderValidator extends Order {
+
+	protected $order;
+	protected $errors:
+
+	public function __construct(Order $order)
+	{
+		$this->order = $order;
+		$this->errors = [];
+	}
+
+	public function isValid(): bool
+	{
+		$validators = [
+			
 			'Naam' => function($naam) {
 				if(!is_string($naam) || '' === $naam) {
 					$this->errors['naam'] = 'Geef uw naam op aub.';
@@ -124,6 +116,15 @@ class orderValidator {
 				return true;
 			}
 		];
+		if(!$validators['Naam']($this->order->getNaam())) {
+			$this->errors['naam'] = 'Naam is niet correct';
+			return false;	
+		}
+		if(!$validators['Soep']($this->order->getSoep())) {
+			$this->errors['soep'] = 'Fout bij het selecteren van soep';
+			return false;
+		}
+		return true;		
 	}
 
 	public function getErrors(): array 
