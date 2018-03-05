@@ -1,8 +1,15 @@
 <?php
 
+require_once('Brood.php');
+require_once('Order.php');
+
 session_start();
 
 $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "Salami", "Kipfilet"];
+
+if([] !== $_SESSION['order'] && NULL !== $_SESSION['order']) {
+	$myOrder = $_SESSION['order'];
+}
 
 ?>
 
@@ -27,7 +34,7 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 			<p class="lead">Gelieve onderstaand formulier in te vullen om je broodjes te bestellen.</p>
 		</div>
 		<?php
-			if ([] !== $_SESSION['errors']) {
+			if (!empty($_SESSION['errors']) && [] !== $_SESSION['errors']) {
 				foreach ($_SESSION['errors'] as $error) {
 					?>
 					<div class="alert alert-danger">
@@ -39,6 +46,8 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 					</div>
 					<?php
 				}
+				$_SESSION['errors'] = [];
+				unset($_SESSION['errors']);
 			}
 		?>
 		<form method="POST" action="broodje_verwerken.php">
@@ -50,7 +59,10 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 					<div class="row">
 						<div class="col-md-12 mb-3">
 							<label for="cc-name">Naam</label>
-							<input type="text" class="form-control" id="naam" name="naam" placeholder="Bv. John Doe" required>
+							<input type="text" class="form-control" id="naam" name="naam" placeholder="Bv. John Doe" <?php
+							if([] !== $myOrder) {
+								echo 'value="' . $myOrder->getNaam() . '"';
+							} ?> required>
 							<div class="invalid-feedback">
 								Gelieve een naam in te vullen
 							</div>
@@ -64,54 +76,152 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 							<div class="col-md-2 mb-3">
 								<label for="aantal_1">Aantal</label>
 								<div id="aantalContainer">
-									<input type="number" name="aantal_1" class="form-control mb-3" id="aantal_1" placeholder="1" value="1" required>
+									<?php
+									if([] !== $myOrder) {
+										$broodjesteller = 0;
+										foreach ($myOrder->getBroodjes() as $broodje) {
+											$broodjesteller++;
+											?>
+											<input type="number" name="aantal_<?php echo $broodjesteller; ?>" class="form-control mb-3" id="aantal_<?php echo $broodjesteller; ?>" placeholder="1" value="<?php echo $broodje->getAantalBroodjes(); ?>" required>
+											<?php
+										}
+									} else {
+										?>
+										<input type="number" name="aantal_1" class="form-control mb-3" id="aantal_1" placeholder="1" value="1" required>
+										<?php
+									}
+									?>
 								</div>
 							</div>
 							<div class="col-md-2 mb-3">
 								<label for="grootte_1">Grootte</label>
 								<div id="grootteContainer">
-									<div class="input-group mb-3">
-										<select class="custom-select" id="grootte_1" name="grootte_1">
-											<option value="1" selected>Groot</option>
-											<option value="0">Klein</option>
-										</select>
-									</div>
+									<?php
+									if([] !== $myOrder) {
+										$broodjesteller = 0;
+										foreach ($myOrder->getBroodjes() as $broodje) {
+											$broodjesteller++;
+											?>
+											<div class="input-group mb-3">
+												<select class="custom-select" id="grootte_<?php echo $broodjesteller; ?>" name="grootte_<?php echo $broodjesteller; ?>">
+													<option value="1" <?php if($broodje->getBaguette() === 1) { echo 'selected'; } ?>>Groot</option>
+													<option value="0" <?php if($broodje->getBaguette() === 0) { echo 'selected'; } ?>>Klein</option>
+												</select>
+											</div>
+											<?php
+										}
+									} else {
+										?>
+										<div class="input-group mb-3">
+											<select class="custom-select" id="grootte_1" name="grootte_1">
+												<option value="1" selected>Groot</option>
+												<option value="0">Klein</option>
+											</select>
+										</div>
+										<?php
+									}
+									?>
 								</div>
 							</div>
 							<div class="col-md-2 mb-3">
 								<label for="smos_1">Smos</label>
 								<div id="smosContainer">
-									<div class="input-group mb-3">
-										<select class="custom-select" id="smos_1" name="smos_1">
-											<option value="1" selected>Ja</option>
-											<option value="0">Nee</option>
-										</select>
-									</div>
+									<?php
+									if([] !== $myOrder) {
+										$broodjesteller = 0;
+										foreach ($myOrder->getBroodjes() as $broodje) {
+											$broodjesteller++;
+											?>
+											<div class="input-group mb-3">
+												<select class="custom-select" id="smos_<?php echo $broodjesteller; ?>" name="smos_<?php echo $broodjesteller; ?>">
+													<option value="1" <?php if($broodje->getSmos() === 1) { echo 'selected'; } ?>>Ja</option>
+													<option value="0" <?php if($broodje->getSmos() === 0) { echo 'selected'; } ?>>Nee</option>
+												</select>
+											</div>
+											<?php
+										}
+									} else {
+										?>
+										<div class="input-group mb-3">
+											<select class="custom-select" id="smos_1" name="smos_1">
+												<option value="1" selected>Ja</option>
+												<option value="0">Nee</option>
+											</select>
+										</div>
+										<?php
+									}
+									?>
 								</div>
 							</div>
 							<div class="col-md-2 mb-3">
 								<label for="fitness_1">Fitness</label>
 								<div id="fitnessContainer">
-									<div class="input-group mb-3">
-										<select class="custom-select" id="fitness_1" name="fitness_1">
-											<option value="1" selected>Nee</option>
-											<option value="0">Ja</option>
-										</select>
-									</div>
+									<?php
+									if([] !== $myOrder) {
+										$broodjesteller = 0;
+										foreach ($myOrder->getBroodjes() as $broodje) {
+											$broodjesteller++;
+											?>
+											<div class="input-group mb-3">
+												<select class="custom-select" id="fitness_<?php echo $broodjesteller; ?>" name="fitness_<?php echo $broodjesteller; ?>">
+													<option value="1" <?php if($broodje->getFitness() === 1) { echo 'selected'; } ?>>Nee</option>
+													<option value="0" <?php if($broodje->getFitness() === 0) { echo 'selected'; } ?>>Ja</option>
+												</select>
+											</div>
+											<?php
+										}
+									} else {
+										?>
+										<div class="input-group mb-3">
+											<select class="custom-select" id="fitness_1" name="fitness_1">
+												<option value="1" selected>Nee</option>
+												<option value="0">Ja</option>
+											</select>
+										</div>
+										<?php
+									}
+									?>
 								</div>
 							</div>
 							<div class="col-md-4 mb-3">
-								<label for="type_1">Type</label>
+								<label for="type_<?php echo $broodjesteller; ?>">Type</label>
 								<div id="typeContainer">
-									<div class="input-group mb-3">
-										<select class="custom-select" id="type_1" name="type_1">
-											<?php
-											foreach ($typeBroodjes as $broodje) {
-												echo '<option value="' . $broodje . '">' . $broodje . '</option>';
-											}
+									<?php
+									if([] !== $myOrder) {
+										$broodjesteller = 0;
+										foreach ($myOrder->getBroodjes() as $broodje) {
+											$broodjesteller++;
 											?>
-										</select>
-									</div>
+											<div class="input-group mb-3">
+												<select class="custom-select" id="type_<?php echo $broodjesteller; ?>" name="type_<?php echo $broodjesteller; ?>">
+													<?php
+													foreach ($typeBroodjes as $broodjes) {
+														echo '<option value="' . $broodjes . '"';
+														if($broodje->getTypeBeleg() === $broodjes) {
+															echo ' selected';
+														}
+														echo '>' . $broodjes . '</option>';
+													}
+													?>
+												</select>
+											</div>
+											<?php
+										}
+									} else {
+										?>
+										<div class="input-group mb-3">
+											<select class="custom-select" id="type_1" name="type_1">
+												<?php
+												foreach ($typeBroodjes as $broodjes) {
+													echo '<option value="' . $broodjes . '">' . $broodjes . '</option>';
+												}
+												?>
+											</select>
+										</div>
+										<?php
+									}
+									?>
+
 								</div>
 							</div>
 						</div>
@@ -122,7 +232,12 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 					<hr class="md4" />
 
 					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" id="soepvdag" name="soepvdag">
+						<input type="checkbox" class="custom-control-input" id="soepvdag" name="soepvdag" <?php
+							if([] !== $myOrder) {
+								if($myOrder->getSoep()) {
+									echo 'checked';
+								}
+							} ?>>
 						<label class="custom-control-label" for="soepvdag">Ik wil de soep van de dag (Broccolisoep).</label>
 					</div>
 
@@ -145,13 +260,13 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 
 	<script type="text/javascript">
 		
-		var broodjesteller = 1;
+		var broodjesteller = <?php echo $broodjesteller; ?>;
 
-		var aantalcode = $('#aantalContainer').html().replace(/aantal_1/g, "aantal_XXX");
-		var groottecode = $('#grootteContainer').html().replace(/grootte_1/g, "grootte_XXX");
-		var smoscode = $('#smosContainer').html().replace(/smos_1/g, "smos_XXX");
-		var typecode = $('#typeContainer').html().replace(/type_1/g, "type_XXX");
-		var fitnesscode = $('#fitnessContainer').html().replace(/fitness_1/g, "fitness_XXX");
+		var aantalcode = $('#broodje_1 #aantalContainer').html().replace(/aantal_1/g, "aantal_XXX");
+		var groottecode = $('#broodje_1 #grootteContainer').html().replace(/grootte_1/g, "grootte_XXX");
+		var smoscode = $('#broodje_1 #smosContainer').html().replace(/smos_1/g, "smos_XXX");
+		var typecode = $('#broodje_1 #typeContainer').html().replace(/type_1/g, "type_XXX");
+		var fitnesscode = $('#broodje_1 #fitnessContainer').html().replace(/fitness_1/g, "fitness_XXX");
 
 		$(function() {
 			$('#addBrood').on('click', function(e) {

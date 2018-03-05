@@ -31,6 +31,8 @@ if([] !== $_POST) {
 
 	$myOrder = New Order($_POST['naam'], $soepvdag, $broodjes);
 
+	$_SESSION['order'] = $myOrder;
+
 	// validator
 
 	$orderValidator = new orderValidator($myOrder);
