@@ -10,7 +10,6 @@ if (isset($_POST['persoon']))
     $_SESSION['persoon']['email'] = $_POST['persoon']['email'];
     header('index.php');
 }
-
 if (isset($_POST["bestelling"]))
 {
     $_SESSION['bestelling']['isSmos'] = '';
