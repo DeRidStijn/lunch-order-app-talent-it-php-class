@@ -36,16 +36,16 @@ if([] !== $_POST) {
 	$orderValidator = new orderValidator($myOrder);
 	$errors = [];
 
-	if ($orderValidator->isValid()) {
-		foreach ($broodjes as $broodje) {
-			$broodjeValidator = New broodValidator($broodje);
-			if(!$broodValidator->isValid()) {
-				$errors[] = $broodValidator->getErrors();
-			}
-		}
-    } else {
+	if (!$orderValidator->isValid()) {
         $errors[] = $orderValidator->getErrors();
     }
+
+    foreach ($broodjes as $broodje) {
+		$broodjeValidator = New broodValidator($broodje);
+		if(!$broodValidator->isValid()) {
+			$errors[] = $broodValidator->getErrors();
+		}
+	}
 
     if([] === $errors) {
 		var_dump($myOrder);
