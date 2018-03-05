@@ -41,7 +41,7 @@ if([] !== $_POST) {
     }
 
     foreach ($broodjes as $broodje) {
-		$broodjeValidator = New broodValidator($broodje);
+		$broodValidator = New broodValidator($broodje);
 		if(!$broodValidator->isValid()) {
 			$errors[] = $broodValidator->getErrors();
 		}
