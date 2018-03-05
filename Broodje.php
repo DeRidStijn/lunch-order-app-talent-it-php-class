@@ -3,7 +3,6 @@
 class Broodje
 {
     protected $smos;
-    protected $soep;
     protected $fitness;
     protected $typeBeleg;
     protected $baguette;
@@ -20,12 +19,7 @@ class Broodje
     {
         $this->smos;
     }
-
-    function addSoep() : bool
-    {
-        $this->soep;
-    }
-
+    
     function addFitness() : bool
     {
         $this->fitness;
