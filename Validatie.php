@@ -77,6 +77,7 @@ class broodValidator extends Brood {
 			$this->errors['type'] = 'Type is niet correct';
 			return false;
 		}
+		return true;
 	}
 
 	public function getErrors(): array 
