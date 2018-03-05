@@ -262,7 +262,14 @@ if([] !== $_SESSION['order'] && NULL !== $_SESSION['order']) {
 		
 		var broodjesteller = <?php echo $broodjesteller; ?>;
 
-		var aantalcode = $('#broodje_1 #aantalContainer').html().replace(/aantal_1/g, "aantal_XXX");
+		var aantalcode = $('#broodje_1 #aantalContainer').html();
+
+		var jHtmlObject = jQuery(aantalcode);
+		var editor = jQuery("").append(jHtmlObject);
+		editor.find("#div2").remove();
+		var newHtml = editor.html();
+
+		.replace(/aantal_1/g, "aantal_XXX");
 		var groottecode = $('#broodje_1 #grootteContainer').html().replace(/grootte_1/g, "grootte_XXX");
 		var smoscode = $('#broodje_1 #smosContainer').html().replace(/smos_1/g, "smos_XXX");
 		var typecode = $('#broodje_1 #typeContainer').html().replace(/type_1/g, "type_XXX");
