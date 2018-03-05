@@ -6,8 +6,6 @@ class Validatie
 	protected $validators;*/
 	protected $strings;
 	protected $numbers;
-	public $validString;
-	public $validNumber;
 	public $errorMessage = '';
 
 	public function __construct(array $strings = [], array $numbers = [])
@@ -19,41 +17,33 @@ class Validatie
 	public function isString()
 	{
 		foreach ($this->strings as $string) {
-			$validString = false;
-				
-			echo $string;	
-
-			if(is_string($string) && '' !== $string) {
-				$validString = true;
-			} else {
+			if(!is_string($string) || '' === $string) {
 				$this->errorMessage = 'You entered an invalid input';
 				return $this->errorMessage;
 			}
+
+			echo $string;
 		}
 	}
 
 	public function isNumber()
 	{
 		foreach ($this->numbers as $number) {
-			$validNumber = false;
-
-			echo $number;
-
-			if(is_numeric($number) && $number >= 0) {
-				$validNumber = true;
-			} else {
+			if(!is_numeric($number) || $number < 0) {
 				$this->errorMessage = 'You entered an invalid input';
 				return $this->errorMessage;
 			}
+
+			echo $number;
 		}
 	}
 }
 
-header("Location: index.php");
+/*header("Location: index.php");
+*/
+// TEST CODE
 
-/*// TEST CODE
-
-$toValidateStrings = ['martino', 'beenham', 'hesp'];
+/*$toValidateStrings = ['martino', 'beenham', 'hesp'];
 $toValidateNumbers = [5, 1.3, 8, 9.23, 'hesp', -6];
 $ToValidate = new Validatie($toValidateStrings, $toValidateNumbers);
 
