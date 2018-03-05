@@ -26,6 +26,7 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 		</div>
 
 		<form method="POST" action="broodje_verwerken.php">
+			<input type="number" value="1" id="aantalbroodjes" name="aantalbroodjes" style="display: none;" />
 			<div class="row">
 				<div class="col-md-4 order-md-2 mb-4">
 					<h4 class="mb-3">Je gegevens</h4>
@@ -33,7 +34,7 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 					<div class="row">
 						<div class="col-md-12 mb-3">
 							<label for="cc-name">Naam</label>
-							<input type="text" class="form-control" id="naam" placeholder="Bv. John Doe" required>
+							<input type="text" class="form-control" id="naam" name="naam" placeholder="Bv. John Doe" required>
 							<div class="invalid-feedback">
 								Gelieve een naam in te vullen
 							</div>
@@ -77,17 +78,17 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 								<div id="fitnessContainer">
 									<div class="input-group mb-3">
 										<select class="custom-select" id="fitness_1" name="fitness_1">
-											<option value="1" selected>Wit</option>
-											<option value="0">Bruin</option>
+											<option value="1" selected>Nee</option>
+											<option value="0">Ja</option>
 										</select>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-4 mb-3">
-								<label for="aantal_1">Type</label>
+								<label for="type_1">Type</label>
 								<div id="typeContainer">
 									<div class="input-group mb-3">
-										<select class="custom-select" id="aantal_1" name="aantal_1">
+										<select class="custom-select" id="type_1" name="type_1">
 											<?php
 											foreach ($typeBroodjes as $broodje) {
 												echo '<option value="' . $broodje . '">' . $broodje . '</option>';
@@ -130,21 +131,22 @@ $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "S
 		
 		var broodjesteller = 1;
 
-		var aantalcode = $('#aantalContainer').html().replaceAll("aantal_1", "aantal_XXX");
-		var groottecode = $('#grootteContainer').html().replaceAll("grootte_1", "grootte_XXX");
-		var smoscode = $('#smosContainer').html().replaceAll("smos_1", "smos_XXX");
-		var typecode = $('#typeContainer').html().replaceAll("type_1", "type_XXX");
-		var fitnesscode = $('#fitnessContainer').html().replaceAll("fitness_1", "fitness_XXX");
+		var aantalcode = $('#aantalContainer').html().replace(/aantal_1/g, "aantal_XXX");
+		var groottecode = $('#grootteContainer').html().replace(/grootte_1/g, "grootte_XXX");
+		var smoscode = $('#smosContainer').html().replace(/smos_1/g, "smos_XXX");
+		var typecode = $('#typeContainer').html().replace(/type_1/g, "type_XXX");
+		var fitnesscode = $('#fitnessContainer').html().replace(/fitness_1/g, "fitness_XXX");
 
 		$(function() {
 			$('#addBrood').on('click', function(e) {
 				e.preventDefault();
 				++broodjesteller;
-				var myAantal = aantalcode.replaceAll("XXX", broodjesteller);
-				var myGrootte = groottecode.replaceAll("XXX", broodjesteller);
-				var mySmos = smoscode.replaceAll("XXX", broodjesteller);
-				var myType = typecode.replaceAll("XXX", broodjesteller);
-				var myFitness = fitnesscode.replaceAll("XXX", broodjesteller);
+				$('#aantalbroodjes').val(broodjesteller);
+				var myAantal = aantalcode.replace(/XXX/g, broodjesteller);
+				var myGrootte = groottecode.replace(/XXX/g, broodjesteller);
+				var mySmos = smoscode.replace(/XXX/g, broodjesteller);
+				var myType = typecode.replace(/XXX/g, broodjesteller);
+				var myFitness = fitnesscode.replace(/XXX/g, broodjesteller);
 				$('#aantalContainer').append(myAantal);
 				$('#grootteContainer').append(myGrootte);
 				$('#smosContainer').append(mySmos);
