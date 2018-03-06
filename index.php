@@ -49,6 +49,18 @@ if(!empty($_SESSION['order'])) {
 				$_SESSION['errors'] = [];
 				unset($_SESSION['errors']);
 			}
+
+			if (!empty($_SESSION['success']) && "" !== $_SESSION['success']) {
+				?>
+				<div class="alert alert-success">
+					<?php
+					echo $_SESSION['success'];
+					?>
+				</div>
+				<?php
+				$_SESSION['success'] = "";
+				unset($_SESSION['success']);
+			}
 		?>
 		<form method="POST" action="broodje_verwerken.php">
 			<input type="number" value="1" id="aantalbroodjes" name="aantalbroodjes" style="display: none;" />
@@ -75,6 +87,9 @@ if(!empty($_SESSION['order'])) {
 						<div class="row" id="broodje_1">
 							<div class="col-md-2 mb-3">
 								<label for="aantal_1">Aantal</label>
+								<div id="addMeAantal" style="display: none;">
+									<input type="number" name="aantal_1" class="form-control mb-3" id="aantal_1" placeholder="1" value="1" required>
+								</div>
 								<div id="aantalContainer">
 									<?php
 									if(!empty($myOrder)) {
@@ -95,6 +110,14 @@ if(!empty($_SESSION['order'])) {
 							</div>
 							<div class="col-md-2 mb-3">
 								<label for="grootte_1">Grootte</label>
+								<div id="addMeGrootte" style="display: none;">
+									<div class="input-group mb-3">
+										<select class="custom-select" id="grootte_1" name="grootte_1">
+											<option value="1" selected>Groot</option>
+											<option value="0">Klein</option>
+										</select>
+									</div>
+								</div>
 								<div id="grootteContainer">
 									<?php
 									if(!empty($myOrder)) {
@@ -125,6 +148,14 @@ if(!empty($_SESSION['order'])) {
 							</div>
 							<div class="col-md-2 mb-3">
 								<label for="smos_1">Smos</label>
+								<div id="addMeSmos" style="display: none;">
+									<div class="input-group mb-3">
+										<select class="custom-select" id="smos_1" name="smos_1">
+											<option value="1" selected>Ja</option>
+											<option value="0">Nee</option>
+										</select>
+									</div>
+								</div>
 								<div id="smosContainer">
 									<?php
 									if(!empty($myOrder)) {
@@ -155,6 +186,14 @@ if(!empty($_SESSION['order'])) {
 							</div>
 							<div class="col-md-2 mb-3">
 								<label for="fitness_1">Fitness</label>
+								<div id="addMeFitness" style="display: none;">
+									<div class="input-group mb-3">
+										<select class="custom-select" id="fitness_1" name="fitness_1">
+											<option value="1" selected>Nee</option>
+											<option value="0">Ja</option>
+										</select>
+									</div>
+								</div>
 								<div id="fitnessContainer">
 									<?php
 									if(!empty($myOrder)) {
@@ -185,6 +224,17 @@ if(!empty($_SESSION['order'])) {
 							</div>
 							<div class="col-md-4 mb-3">
 								<label for="type_1">Type</label>
+								<div id="addMeType" style="display: none;">
+									<div class="input-group mb-3">
+										<select class="custom-select" id="type_1" name="type_1">
+											<?php
+											foreach ($typeBroodjes as $broodjes) {
+												echo '<option value="' . $broodjes . '">' . $broodjes . '</option>';
+											}
+											?>
+										</select>
+									</div>
+								</div>
 								<div id="typeContainer">
 									<?php
 									if(!empty($myOrder)) {
@@ -262,16 +312,16 @@ if(!empty($_SESSION['order'])) {
 		
 		var broodjesteller = 1;
 
-		var aantalcode = $('#broodje_1 #aantalContainer').html().replace(/aantal_1/g, "aantal_XXX");
-		var groottecode = $('#broodje_1 #grootteContainer').html().replace(/grootte_1/g, "grootte_XXX");
-		var smoscode = $('#broodje_1 #smosContainer').html().replace(/smos_1/g, "smos_XXX");
-		var typecode = $('#broodje_1 #typeContainer').html().replace(/type_1/g, "type_XXX");
-		var fitnesscode = $('#broodje_1 #fitnessContainer').html().replace(/fitness_1/g, "fitness_XXX");
+		var aantalcode = $('#addMeAantal').html().replace(/aantal_1/g, "aantal_XXX");
+		var groottecode = $('#addMeGrootte').html().replace(/grootte_1/g, "grootte_XXX");
+		var smoscode = $('#addMeSmos').html().replace(/smos_1/g, "smos_XXX");
+		var typecode = $('#addMeType').html().replace(/type_1/g, "type_XXX");
+		var fitnesscode = $('#addMeFitness').html().replace(/fitness_1/g, "fitness_XXX");
 
 		$(function() {
 			$('#addBrood').on('click', function(e) {
 				e.preventDefault();
-				/*++broodjesteller;
+				++broodjesteller;
 				$('#aantalbroodjes').val(broodjesteller);
 				var myAantal = aantalcode.replace(/XXX/g, broodjesteller);
 				var myGrootte = groottecode.replace(/XXX/g, broodjesteller);
@@ -282,7 +332,7 @@ if(!empty($_SESSION['order'])) {
 				$('#grootteContainer').append(myGrootte);
 				$('#smosContainer').append(mySmos);
 				$('#typeContainer').append(myType);
-				$('#fitnessContainer').append(myFitness);*/
+				$('#fitnessContainer').append(myFitness);
 			});
 		});
 

@@ -49,11 +49,13 @@ if([] !== $_POST) {
     } else {
         $errors[] = $orderValidator->getErrors();
     }
-    
+
     if([] === $errors) {
     	$myFileHandler = New FileHandler($myOrder);
 
 		$myFileHandler->create();
+
+		$_SESSION['success'] = 'De broodjes zijn succesvol bestelt.';
 		Header('Location: index.php');
 	} else {
 		$_SESSION['errors'] = $errors;
