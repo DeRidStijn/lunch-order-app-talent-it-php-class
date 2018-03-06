@@ -6,6 +6,11 @@ require_once('Brood.php');
 require_once('Order.php');
 require_once('Validatie.php');
 require_once('file_handler.php');
+require_once __DIR__ . './config.php';
+
+$pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
+
+		
 
 if([] !== $_POST) {
 
@@ -51,9 +56,19 @@ if([] !== $_POST) {
     }
 
     if([] === $errors) {
-    	$myFileHandler = New FileHandler($myOrder);
 
-		$myFileHandler->create();
+		//$naam = $_POST['naam'];
+
+		$queryOrder = 'INSERT INTO order ("user_id","datum", "soep", "soepbrood_wit") VALUES (?, ?, ?, ?)';
+		$queryBroodje = 'INSERT INTO broodje ("is_groot", "beleg_id", "supplement_id", "is_wit", "opmerking") VALUES (?, ?, ?, ?, ?)';
+		$queryOrderBroodje ='INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)';
+
+
+
+
+    	//$myFileHandler = New FileHandler($myOrder);
+
+		//$myFileHandler->create();
 
 		$_SESSION['success'] = 'De broodjes zijn succesvol bestelt.';
 		Header('Location: index.php');
