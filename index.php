@@ -2,8 +2,15 @@
 
 require_once('Brood.php');
 require_once('Order.php');
+require_once __DIR__ . './config.php';
 
 session_start();
+
+// SETUP FOR PULLING ALL 'beleg' FROM DB
+
+$pdo = new PDO($config['dns'], $config['username'], $config['password'], $config['options']);
+$stmt = $pdo->prepare('SELECT * FROM beleg');
+$stmt->execute();
 
 $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "Salami", "Kipfilet"];
 
@@ -261,6 +268,17 @@ if(!empty($_SESSION['order'])) {
 										?>
 										<div class="input-group mb-3">
 											<select class="custom-select" id="type_1" name="type_1">
+												
+												<?php 
+													// SETUP FOR PULLING ALL 'beleg' FROM DB
+													while($row = $stmt->fetch()) {
+
+														echo '<option value=".{$row['id']}.">.{$row['beleg']}.</option>';
+
+													}
+												?>
+
+
 												<?php
 												foreach ($typeBroodjes as $broodjes) {
 													echo '<option value="' . $broodjes . '">' . $broodjes . '</option>';
