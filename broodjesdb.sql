@@ -27,6 +27,13 @@ CREATE TABLE 'soep' (
  'soep' VARCHAR(30) NOT NULL DEFAULT '';
 ) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
+DROP TABLE IF EXISTS 'order_broodje';
+CREATE TABLE 'order_broodje' (
+    'broodje_id' INT UNSIGNED NOT NULL;
+    'order_id' INT UNSIGNED NOT NULL;
+
+) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
+
 
 DROP TABLE IF EXISTS 'broodje';
 CREATE TABLE 'broodje' (
