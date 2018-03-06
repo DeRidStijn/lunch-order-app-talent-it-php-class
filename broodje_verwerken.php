@@ -41,7 +41,7 @@ if([] !== $_POST) {
 
 	if ($orderValidator->isValid()) {
 		foreach ($broodjes as $broodje) {
-			$broodjeValidator = New broodValidator($broodje);
+			$broodValidator = New broodValidator($broodje);
 			if(!$broodValidator->isValid()) {
 				$errors[] = $broodValidator->getErrors();
 			}
@@ -49,9 +49,11 @@ if([] !== $_POST) {
     } else {
         $errors[] = $orderValidator->getErrors();
     }
-
+    
     if([] === $errors) {
-		$fileHandler->create();
+    	$myFileHandler = New FileHandler($myOrder);
+
+		$myFileHandler->create();
 		Header('Location: index.php');
 	} else {
 		$_SESSION['errors'] = $errors;
