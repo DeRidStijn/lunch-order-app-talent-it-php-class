@@ -63,6 +63,9 @@ if([] !== $_POST) {
 		$queryBroodje = 'INSERT INTO broodje ("is_groot", "beleg_id", "supplement_id", "is_wit", "opmerking") VALUES (?, ?, ?, ?, ?)';
 		$queryOrderBroodje ='INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)';
 
+		// connectie sluiten ?
+		
+
 
 
 
