@@ -59,7 +59,6 @@
     DROP TABLE IF EXISTS `user`;
     CREATE TABLE `user` (
         `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-        `username` VARCHAR(30) NOT NULL DEFAULT '',
         `naam` VARCHAR(30) NOT NULL DEFAULT '',
         `voornaam` VARCHAR(30) NOT NULL DEFAULT '',
         `password` VARCHAR(255) NOT NULL DEFAULT '',
