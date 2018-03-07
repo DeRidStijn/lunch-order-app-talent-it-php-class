@@ -38,8 +38,8 @@
 
     DROP TABLE IF EXISTS `order_broodje`;
     CREATE TABLE `order_broodje` (
-        `broodje_id` INT UNSIGNED NOT NULL,
         `order_id` INT UNSIGNED NOT NULL,
+        `broodje_id` INT UNSIGNED NOT NULL,
         `aantal` INT UNSIGNED NOT NULL,
         PRIMARY KEY (`broodje_id`, `order_id`)
     ) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';

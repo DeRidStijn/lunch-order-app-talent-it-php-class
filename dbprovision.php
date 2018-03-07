@@ -19,8 +19,8 @@ if ($fp = fopen($broodjesRepo, 'r')) {
 
 $config = [
     'dsn' => 'mysql:host=localhost;dbname=broodjesapp;charset=utf8',
-    'username' => 'broodjesapp',
-    'password' => 'php123',
+    'username' => 'root',
+    'password' => 'root',
     'options' => [],
 ];
 $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
@@ -45,7 +45,7 @@ foreach ($broodjesData as $broodje) {
     $belegStmt->bindValue(2, $broodje['prijs_groot']);
     $belegStmt->bindValue(3, $broodje['beleg'], PDO::PARAM_STR);
     $belegStmt->bindValue(4, $broodje['omschrijving'], PDO::PARAM_STR);
-//    $belegStmt->bindValue(5, $categories[$broodje['categorie']], PDO::PARAM_INT);
+//  $belegStmt->bindValue(5, $categories[$broodje['categorie']], PDO::PARAM_INT);
     $belegStmt->execute();
 }
 
