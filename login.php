@@ -37,7 +37,7 @@
 			<p class="lead">
 				Gelieve je eerst aan te melden om broodjes te bestellen.
 			</p>
-			<form class="col-md-4 mt-4" style="margin: 0 auto;">
+			<form class="col-md-4 mt-4" style="margin: 0 auto;" method="POST" action="authorise.php">
 				<div class="row">
 					<div class="col-md-12 mb-3">
 						<label for="email" class="sr-only">Email</label>
