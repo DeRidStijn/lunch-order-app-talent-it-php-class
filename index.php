@@ -260,8 +260,14 @@ if(!empty($_SESSION['order'])) {
 
 											<?php 
 												// SETUP FOR PULLING ALL 'beleg' FROM DB
-												foreach ($belegArr as $beleg) {
-													echo '<option value="' . $beleg['id'] . '">' . $beleg['naam'] . '</option>';
+												foreach($categorieArr as $categorie) {
+													echo '<optgroup label="' . $categorie['categorie'] . '">'; 
+														foreach ($belegArr as $beleg) {
+															if($beleg['categorie_id'] === $categorie['id']) {
+																echo '<option value="' . $beleg['id'] . '">' . $beleg['naam'] . '</option>';	
+															}
+														}
+													echo '</optgroup>';
 												}
 	
 											?>
@@ -291,8 +297,14 @@ if(!empty($_SESSION['order'])) {
 
 													}*/	
 
-													foreach ($belegArr as $beleg) {
-														echo '<option value="' . $beleg['id'] . '">' . $beleg['naam'] . '</option>';
+													foreach($categorieArr as $categorie) {
+														echo '<optgroup label="' . $categorie['categorie'] . '">'; 
+															foreach ($belegArr as $beleg) {
+																if($beleg['categorie_id'] === $categorie['id']) {
+																	echo '<option value="' . $beleg['id'] . '">' . $beleg['naam'] . '</option>';	
+																}
+															}
+														echo '</optgroup>';
 													}
 
 													/*foreach ($typeBroodjes as $broodjes) {
