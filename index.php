@@ -10,10 +10,16 @@ session_start();
 
 $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
 
+$stmt = $pdo->prepare('SELECT soep FROM soep WHERE id=' . date(N));
+$stmt->execute();
+
+$soep = $stmt->fetch(PDO::FETCH_ASSOC);
+
 $stmt = $pdo->prepare('SELECT * FROM beleg');
 $stmt->execute();
 
 $belegArr = $stmt->fetchAll();
+
 
 $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "Salami", "Kipfilet"];
 
@@ -39,8 +45,8 @@ if(!empty($_SESSION['order'])) {
 	<!-- Test area -->
 	<?php
 
-	/*while($row = $stmt->fetch()) {
-		echo $row['beleg'];
+	/*foreach ($soepArr as $soep) {
+		echo $soep['soep'];
 	}
 */
 	?>
@@ -203,12 +209,12 @@ if(!empty($_SESSION['order'])) {
 								</div>
 							</div>
 							<div class="col-md-2 mb-3">
-								<label for="fitness_1">Fitness</label>
+								<label for="fitness_1">Wit / Bruin</label>
 								<div id="addMeFitness" style="display: none;">
 									<div class="input-group mb-3">
 										<select class="custom-select" id="fitness_1" name="fitness_1">
-											<option value="1" selected>Nee</option>
-											<option value="0">Ja</option>
+											<option value="1" selected>Wit</option>
+											<option value="0">Bruin</option>
 										</select>
 									</div>
 								</div>
@@ -336,7 +342,7 @@ if(!empty($_SESSION['order'])) {
 									echo 'checked';
 								}
 							} ?>>
-						<label class="custom-control-label" for="soepvdag">Ik wil de soep van de dag (Broccolisoep).</label>
+						<label class="custom-control-label" for="soepvdag">Ik wil de soep van de dag (<?php echo $soep['soep']; ?>).</label>
 					</div>
 
 					<hr class="md4" />
