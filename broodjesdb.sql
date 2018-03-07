@@ -85,11 +85,20 @@
         PRIMARY KEY (`id`)
     ) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
+    DROP TABLE IF EXISTS `broodje_supplement`;
+    CREATE TABLE `broodje_supplement` (
+        `broodje_id` INT UNSIGNED NOT NULL,
+        `supplement_id` INT UNSIGNED NOT NULL,
+        PRIMARY KEY (`broodje_id`, `supplement_id`)    
+    ) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
+
     ALTER TABLE `order` ADD CONSTRAINT FOREIGN KEY FK_OrderUser (`user_id`) REFERENCES `user`(`id`);                            
     ALTER TABLE `beleg` ADD CONSTRAINT FOREIGN KEY FK_BelegCategorie (`categorie_id`) REFERENCES `categorie`(`id`);             
     ALTER TABLE `order_broodje` ADD CONSTRAINT FOREIGN KEY FK_OrderBroodje (`order_id`) REFERENCES `order`(`id`);               
     ALTER TABLE `order_broodje` ADD CONSTRAINT FOREIGN KEY FK_OrderbroodjeBroodje (`broodje_id`) REFERENCES `broodje`(`id`);    
     ALTER TABLE `broodje` ADD CONSTRAINT FOREIGN KEY FK_BroodjeBeleg (`beleg_id`) REFERENCES `beleg`(`id`);                     
-    ALTER TABLE `broodje` ADD CONSTRAINT FOREIGN KEY FK_BroodjeSupplement (`supplement_id`) REFERENCES `supplement`(`id`);      
+/*    ALTER TABLE `broodje` ADD CONSTRAINT FOREIGN KEY FK_BroodjeSupplement (`supplement_id`) REFERENCES `supplement`(`id`);   */
+    ALTER TABLE `broodje_supplement` ADD CONSTRAINT FOREIGN KEY FK_BroodjeSupplementBroodje (`broodje_id`) REFERENCES `broodje`(`id`);  
+    ALTER TABLE `broodje_supplement` ADD CONSTRAINT FOREIGN KEY FK_BroodjeSupplementSupplement (`supplement_id`) REFERENCES `supplement`(`id`);  
         
 
