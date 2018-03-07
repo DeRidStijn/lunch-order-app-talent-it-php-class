@@ -10,7 +10,7 @@ session_start();
 
 $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
 
-$stmt = $pdo->prepare('SELECT soep FROM soep WHERE id=' . date(N));
+$stmt = $pdo->prepare('SELECT soep FROM soep WHERE id=' . date('N'));
 $stmt->execute();
 
 $soep = $stmt->fetch(PDO::FETCH_ASSOC);

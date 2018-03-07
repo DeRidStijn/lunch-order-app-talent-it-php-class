@@ -10,6 +10,23 @@
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<style>
+
+	body::after {
+		content: "";
+		background: url('img/login_bg.jpeg');
+		background-size: cover;
+		opacity: 0.2;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		position: absolute;
+		z-index: -1;   
+	}
+
+	</style>
 </head>
 
 <body class="bg-light">
@@ -20,7 +37,7 @@
 			<p class="lead">
 				Gelieve je eerst aan te melden om broodjes te bestellen.
 			</p>
-			<form class="col-md-4 mt-4" style="margin: 0 auto;">
+			<form class="col-md-4 mt-4" style="margin: 0 auto;" method="POST" action="authorise.php">
 				<div class="row">
 					<div class="col-md-12 mb-3">
 						<label for="email" class="sr-only">Email</label>
