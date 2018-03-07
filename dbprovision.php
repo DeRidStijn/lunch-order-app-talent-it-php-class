@@ -48,3 +48,11 @@ foreach ($broodjesData as $broodje) {
 //    $belegStmt->bindValue(5, $categories[$broodje['categorie']], PDO::PARAM_INT);
     $belegStmt->execute();
 }
+
+$soepenlijst = ['Tomatensoep met balletjes', 'Witloofsoep', 'Heldere kippensoep', 'Pompoensoep', 'Kervelsoep'];
+
+foreach ($soepenlijst as $soep) {
+    $soepStmt = $pdo->prepare('INSERT INTO `soep` (`soep`) VALUES (?)');
+    $soepStmt->bindValue(1, $soep, PDO::PARAM_STR);
+    $soepStmt->execute();
+}

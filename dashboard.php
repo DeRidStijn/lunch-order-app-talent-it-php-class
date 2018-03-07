@@ -2,6 +2,8 @@
 
 require_once __DIR__ . './config.php';
 
+session_start();
+
 $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
 
 ?>
@@ -43,11 +45,39 @@ $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config
 
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 				<?php
+
+				if (!empty($_SESSION['errors'])) {
+					foreach ($_SESSION['errors'] as $error) {
+						?>
+						<div class="alert alert-danger">
+							<?php
+							foreach ($error as $errormessage) {
+								echo $errormessage . '<br />';
+							}
+							?>
+						</div>
+						<?php
+					}
+					$_SESSION['errors'] = [];
+					unset($_SESSION['errors']);
+				} else if (!empty($_SESSION['success'])) {
+					?>
+					<div class="alert alert-success">
+						<?php
+						echo $_SESSION['success'];
+						?>
+					</div>
+					<?php
+					$_SESSION['success'] = "";
+					unset($_SESSION['success']);
+				}
+
 				if(!isset($_GET['page'])) {
 					include('dashboard-home.php');
 				} else {
 					include('dashboard-' . $_GET['page'] . '.php');
 				}
+
 				?>
 			</main>
 		</div>
