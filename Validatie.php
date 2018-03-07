@@ -2,6 +2,7 @@
 
 require_once('Brood.php');
 require_once('Order.php');
+require_once('User.php');
 
 class broodValidator extends Brood {
 
@@ -132,5 +133,62 @@ class orderValidator extends Order {
 	{
 		return $this->errors;
 	}	
+}
+
+class UserValidator extends User {
+	protected $user;
+	protected $errors;
+
+	function __construct(User $user) {
+		$this->user = $user;
+		$this->errors = $errors;
+	}
+
+	public function isValid() : bool 
+	{
+		$validators = [
+			'email' => function($email) {
+				if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+					$this->errors['email_invalid'] = 'Foutieve input voor veld \'e-mail\'';
+					return false;
+				} 
+				return true;
+			},
+			'naam' => function($naam) {
+				if(!ctype_alpha($naam) || '' === $naam) {
+					$this->errors['naam_invalid'] = 'Foutieve input voor veld \'naam\'';
+					return false;
+				}
+				return true;
+			},
+			'voornaam' => function($voornaam) {
+				if(!ctype_alnum($voornaam) || '' === $naam) {
+					$this->errors['voornaam_invalid'] = 'Foutieve input voor veld \'voornaam\'';
+				}
+			}
+
+			
+		];
+		if(!$validators['email']($this->user->getEmail())) {
+			$this->errors['email'] = 'Email is niet correct';
+			return false;	
+		}
+		if(!$validators['naam']($this->user->getNaam())) {
+			$this->errors['naam'] = 'Naam is niet correct';
+			return false;
+		}
+		if(!$validators['voornaam']($this->user->getVoornaam())) {
+			$this->errors['voornaam'] = 'voornaam is niet correct';
+			return false;
+		}
+		return true;	
+	}
+
+
+	public function getErrors(): array 
+	{
+		return $this->errors;
+	}
+
 }
 
