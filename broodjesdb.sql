@@ -62,7 +62,7 @@ CREATE TABLE `user` (
     `voornaam` VARCHAR(30) NOT NULL DEFAULT '',
     `password` VARCHAR(30) NOT NULL DEFAULT '',
     `email` VARCHAR(30) NOT NULL DEFAULT '',
-    `potje` INT UNSIGNED NOT NULL DEFAULT 0,
+    `potje` DECIMAL(5,2) UNSIGNED NOT NULL DEFAULT 0,
     `is_admin` TINYINT UNSIGNED DEFAULT 0,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
