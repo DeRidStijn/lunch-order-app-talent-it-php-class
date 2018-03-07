@@ -31,7 +31,7 @@ CREATE TABLE `beleg` (
 
 DROP TABLE IF EXISTS `soep`;
 CREATE TABLE `soep` (
-    `id` INT UNSIGNED NOT NULL,
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `soep` VARCHAR(30) NOT NULL DEFAULT '',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
@@ -79,8 +79,6 @@ CREATE TABLE `supplementen` (
 DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE `categorie` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `kaas` VARCHAR(30) NOT NULL DEFAULT '',
-    `vlees` VARCHAR(30) NOT NULL DEFAULT '',
-    `vis` VARCHAR(30) NOT NULL DEFAULT '',
+    `categorie` VARCHAR(30) NOT NULL DEFAULT '',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
