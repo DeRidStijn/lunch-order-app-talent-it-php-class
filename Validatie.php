@@ -58,6 +58,13 @@ class broodValidator extends Brood {
 					return false;
 				}
 				return true;
+			},
+			'Opmerking' => function($opmerking) {
+				if(!is_string($opmerking) && !ctype_alnum($opmerking)) {
+					$this->errors['opmerking'] = 'Foutieve waarde voor \'opmerking\'';
+					return false;
+				}
+				return true;
 			}
 		];
 		if(!$validators['Aantal']($this->brood->getAantalBroodjes())) {
@@ -78,6 +85,10 @@ class broodValidator extends Brood {
 		}
 		if(!$validators['Type']($this->brood->getTypeBeleg())) {
 			$this->errors['type'] = 'Type is niet correct';
+			return false;
+		}
+		if(!$validators['Opmerking']($this->brood->getOpmerking())) {
+			$this->errors['opmerking'] = 'Opmerking is foutief';
 			return false;
 		}
 		return true;
