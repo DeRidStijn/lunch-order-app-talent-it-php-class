@@ -2,20 +2,19 @@
 
 class User
 {
-    //protected $userName;
     protected $naam;
     protected $voornaam;
     protected $admin;
     protected $geldPotje;
     protected $email;
-    //protected $password;
 
-    function __construct(string $naam, string $voornaam, bool $admin, int $geldPotje, string $email)
+    function __construct(string $naam, string $voornaam, bool $admin, float $geldPotje, string $email)
     {
         $this->naam = $naam;
         $this->email = $email;
         $this->password = $password;
         $this->voornaam = $voornaam;
+        $this->geldPotje = $geldPotje;
     }
 
     public function getNaam() : string
@@ -39,6 +38,11 @@ class User
     public function getVoornaam() : string
     {
         return $this->voornaam;
+    }
+
+    public function getGeldPotje() : float
+    {
+        return $this->geldPotje;
     }
 }
 
