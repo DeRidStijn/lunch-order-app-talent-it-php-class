@@ -8,7 +8,7 @@ if ($fp = fopen($broodjesRepo, 'r')) {
         list($category, $topping, $priceSmall, $priceBig, $description) = fgetcsv($fp, 1024, ';');
         $broodjesData[] = [
             'categorie' => $category,
-            'beleg' => $topping,
+            'naam' => $topping,
             'prijs_klein' => (float) str_replace(',', '.', $priceSmall),
             'prijs_groot' => (float) str_replace(',', '.', $priceBig),
             'omschrijving' => $description,
@@ -16,38 +16,36 @@ if ($fp = fopen($broodjesRepo, 'r')) {
     }
     fclose($fp);
 }
-
 $config = [
     'dsn' => 'mysql:host=localhost;dbname=broodjesapp;charset=utf8',
-    'username' => 'root',
-    'password' => 'root',
+    'username' => 'broodjesapp',
+    'password' => 'php123',
     'options' => [],
 ];
 $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
 
-$categoryStmt = $pdo->prepare('INSERT INTO `category` (`category`) VALUES (?)');
-$belegStmt = $pdo->prepare('INSERT INTO `beleg` (`prijs_klein`, `prijs_groot`, `beleg`, `omschrijving`) VALUES (?, ?, ?, ?)');
+$categoryStmt = $pdo->prepare('INSERT INTO `categorie` (`categorie`) VALUES (?)');
+$belegStmt = $pdo->prepare('INSERT INTO `beleg` (`prijs_klein`, `prijs_groot`, `naam`, `omschrijving`, `categorie_id`) VALUES (?, ?, ?, ?, ?)');
 
 $categories = [];
-foreach ($broodjesData as $broodje) {
+foreach (array_slice($broodjesData, 1) as $broodje) {
 
-    /**
-     * @todo Create table for category of sandwiches
-     *
     if (!array_key_exists($broodje['categorie'], $categories)) {
         $categoryStmt->bindValue(1, $broodje['categorie'], PDO::PARAM_STR);
         $categoryStmt->execute();
         $categoryId = $pdo->lastInsertId();
-        $categories[$broodje['categorie']] = (int) $categoryId;
-    }*/
-
+        $categories[$broodje['categorie']] = (int) $categoryId;   
+    }
     $belegStmt->bindValue(1, $broodje['prijs_klein']);
     $belegStmt->bindValue(2, $broodje['prijs_groot']);
-    $belegStmt->bindValue(3, $broodje['beleg'], PDO::PARAM_STR);
+    $belegStmt->bindValue(3, $broodje['naam'], PDO::PARAM_STR);
     $belegStmt->bindValue(4, $broodje['omschrijving'], PDO::PARAM_STR);
-//  $belegStmt->bindValue(5, $categories[$broodje['categorie']], PDO::PARAM_INT);
+    $belegStmt->bindValue(5, $categories[$broodje['categorie']], PDO::PARAM_INT);
     $belegStmt->execute();
+
 }
+
+
 
 $soepenlijst = ['Tomatensoep met balletjes', 'Witloofsoep', 'Heldere kippensoep', 'Pompoensoep', 'Kervelsoep', 'Niet beschikbaar', 'Niet beschikbaar'];
 

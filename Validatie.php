@@ -4,6 +4,8 @@ require_once('Brood.php');
 require_once('Order.php');
 require_once('User.php');
 
+//USERVALIDATOR, OPMERKINGVALIDATOR EN SUPPLEMENT VALIDATOR MOETEN NOG IN broodje_verwerken.php GEIMPLEMENTEERD WORDEN
+
 class broodValidator extends Brood {
 
 	protected $brood;
@@ -56,6 +58,13 @@ class broodValidator extends Brood {
 					return false;
 				}
 				return true;
+			},
+			'Opmerking' => function($opmerking) {
+				if(!is_string($opmerking) && !ctype_alnum($opmerking)) {
+					$this->errors['opmerking'] = 'Foutieve waarde voor \'opmerking\'';
+					return false;
+				}
+				return true;
 			}
 		];
 		if(!$validators['Aantal']($this->brood->getAantalBroodjes())) {
@@ -76,6 +85,10 @@ class broodValidator extends Brood {
 		}
 		if(!$validators['Type']($this->brood->getTypeBeleg())) {
 			$this->errors['type'] = 'Type is niet correct';
+			return false;
+		}
+		if(!$validators['Opmerking']($this->brood->getOpmerking())) {
+			$this->errors['opmerking'] = 'Opmerking is foutief';
 			return false;
 		}
 		return true;
@@ -116,6 +129,13 @@ class orderValidator extends Order {
 					return false;
 				}
 				return true;
+			},
+			'Supplement' => function($supplement) {
+				if(!is_bool($supplement)) {
+					$this->errors['supplement'] = 'Foute optie voor \'supplement\'';
+					return false;
+				}
+				return true;
 			}
 		];
 		if(!$validators['Naam']($this->order->getNaam())) {
@@ -124,6 +144,10 @@ class orderValidator extends Order {
 		}
 		if(!$validators['Soep']($this->order->getSoep())) {
 			$this->errors['soep'] = 'Fout bij het selecteren van soep';
+			return false;
+		}
+		if(!$validators['Supplement']($this->order->getSupplement())) {
+			$this->errors['supplement'] = 'Fout bij het selecteren van supplement';
 			return false;
 		}
 		return true;		
