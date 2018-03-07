@@ -273,7 +273,7 @@ if(!empty($_SESSION['order'])) {
 													// SETUP FOR PULLING ALL 'beleg' FROM DB
 													while($row = $stmt->fetch()) {
 
-														echo '<option value=".{$row['id']}.">.{$row['beleg']}.</option>';
+														echo '<option value="'.{$row['id']}.'">'.{$row['beleg']}.'</option>';
 
 													}
 												?>
