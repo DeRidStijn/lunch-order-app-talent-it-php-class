@@ -1,3 +1,11 @@
+<?php
+
+require_once __DIR__ . './config.php';
+
+$pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
