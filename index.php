@@ -23,7 +23,7 @@ $belegArr = $stmt->fetchAll();
 $categorieStmt = $pdo->prepare('SELECT * FROM categorie');
 $categorieStmt->execute();
 
-$categorieArr = $categorieStmt-fetchAll();
+$categorieArr = $categorieStmt->fetchAll();
 
 $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "Salami", "Kipfilet"];
 
