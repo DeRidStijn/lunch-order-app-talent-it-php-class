@@ -21,6 +21,7 @@ CREATE TABLE `order` (
 DROP TABLE IF EXISTS `beleg`;
 CREATE TABLE `beleg` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `categorie` VARCHAR(30) NOT NULL DEFAULT '',
     `prijs_klein` DECIMAL(5,2) DEFAULT 0.0,
     `prijs_groot` DECIMAL(5,2) DEFAULT 0.0,
     `beleg` VARCHAR(30) NOT NULL DEFAULT '',
@@ -30,7 +31,7 @@ CREATE TABLE `beleg` (
 
 DROP TABLE IF EXISTS `soep`;
 CREATE TABLE `soep` (
-    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `id` INT UNSIGNED NOT NULL,
     `soep` VARCHAR(30) NOT NULL DEFAULT '',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
@@ -72,5 +73,14 @@ CREATE TABLE `supplementen` (
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `supplement` VARCHAR(30) NOT NULL DEFAULT '',
     `prijs` DECIMAL(5,2) NOT NULL DEFAULT 0.0,
+    PRIMARY KEY (`id`)
+) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
+
+DROP TABLE IF EXISTS `categorie`;
+CREATE TABLE `categorie` (
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    `kaas` VARCHAR(30) NOT NULL DEFAULT '',
+    `vlees` VARCHAR(30) NOT NULL DEFAULT '',
+    `vis` VARCHAR(30) NOT NULL DEFAULT '',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
