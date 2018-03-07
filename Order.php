@@ -14,18 +14,22 @@
             $this->soepBroodWit = $soepBroodWit;
         }
 
-        function getSoep() {
+        function getSoep() : bool
+        {
             return $this->soep;
         }
-        function getBroodjes() {
+        function getBroodjes() : array
+        {
             return $this->broodjes;
         }
 
-        function getNaam() {
+        function getNaam() : string 
+        {
             return $this->naam;
         }
 
-        function getSoepBrood() {
+        function getSoepBrood() : bool 
+        {
             return $this->soepBroodWit;
         }
         

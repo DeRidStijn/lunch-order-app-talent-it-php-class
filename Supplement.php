@@ -10,10 +10,13 @@ class Supplement {
         $this->supplement = $supplement;
     }
 
-    function getSupplement() {
+    public function getSupplement() : string
+    {
         return $supplement;
     }
-    function getPrijs() {
+
+    public function getPrijs() : float 
+    {
         return $prijs;
     }
 
