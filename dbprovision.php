@@ -55,7 +55,6 @@ foreach ($supplementenlijst as $supplement)
     $supplementStmt->bindvalue(2, $suppPrijs[$suppCount]);
     $supplementStmt->execute();
     $suppCount ++;
-    var_dump($supplement);
 }
 
 
