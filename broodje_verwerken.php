@@ -93,15 +93,8 @@ if([] !== $_POST) {
 			$queryOrderBroodje->execute();
 
 		}
-
 		// connectie sluiten ?
-		
-
-
-
-
     	//$myFileHandler = New FileHandler($myOrder);
-
 		//$myFileHandler->create();
 
 		$_SESSION['success'] = 'De broodjes zijn succesvol bestelt.';
