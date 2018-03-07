@@ -35,7 +35,7 @@ foreach (array_slice($broodjesData, 1) as $broodje) {
         $categoryStmt->execute();
         $categoryId = $pdo->lastInsertId();
         $categories[$broodje['categorie']] = (int) $categoryId;   
-    }
+    } 
     $belegStmt->bindValue(1, $broodje['prijs_klein']);
     $belegStmt->bindValue(2, $broodje['prijs_groot']);
     $belegStmt->bindValue(3, $broodje['naam'], PDO::PARAM_STR);

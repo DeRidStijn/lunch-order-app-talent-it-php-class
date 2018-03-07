@@ -29,14 +29,14 @@ if([] !== $_POST) {
 
 		// Per broodje een object van klasse brood instantieren
 
-		$myBrood = New Brood($_POST['smos_'.$x], $_POST['fitness_'.$x], $_POST['type_'.$x], $_POST['grootte_'.$x], $_POST['aantal_'.$x], $_POST['opmerking_'.$x]);
+		$myBrood = New Brood($_POST['smos_'.$x], $_POST['fitness_'.$x], $_POST['type_'.$x], $_POST['grootte_'.$x], $_POST['aantal_'.$x], ""); // @TODO: opmerking nog aanpassen naar form input
 		$broodjes[] = $myBrood;
 
 	}
 
 	// Een order aanmaken met oa naam, soep en een array van het object broodjes
 
-	$myOrder = New Order($_POST['naam'], $soepvdag, $broodjes);
+	$myOrder = New Order($_POST['naam'], $soepvdag, $broodjes, 0); // @TODO: 0 vervangen door brood type wit of bruin
 
 	$_SESSION['order'] = $myOrder;
 
