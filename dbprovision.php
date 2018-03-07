@@ -45,6 +45,17 @@ foreach (array_slice($broodjesData, 1) as $broodje) {
 
 }
 
+$supplementenlijst  = ['smos_groot', 'smos_klein', 'tabasco', 'chilly'];
+$suppPrijs =  [0.8, 0.5, 0.2, 0.2];
+$suppCount = 0;
+foreach ($supplementenlijst as $supplement)
+{
+    $supplementStmt = $pdo->prepare('INSERT INTO `supplement`(`supplement`, `prijs`) VALUES (?, ?)');
+    $supplementStmt->bindvalue(1, $supplement, PDO::PARAM_STR);
+    $supplementStmt->bindvalue(2, $suppPrijs[$suppCount]);
+    $supplementStmt->execute();
+    $suppCount ++;
+}
 
 
 $soepenlijst = ['Tomatensoep met balletjes', 'Witloofsoep', 'Heldere kippensoep', 'Pompoensoep', 'Kervelsoep', 'Niet beschikbaar', 'Niet beschikbaar'];
