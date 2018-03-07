@@ -68,10 +68,11 @@ if([] !== $_POST) {
 		$queryOrder->bindValue(1, 1, PDO::PARAM_INT);
 		$queryOrder->bindValue(2, date("Y-m-d H:i:s"), PDO::PARAM_STR);
 		$queryOrder->bindValue(3, $myOrder->getSoep(), PDO::PARAM_BOOL);
-		$queryOrder->bindValue(4, $myOrder->getSoepBrood(), PDO::PARAM_BOOL); // soepbrood nog in order
+		$queryOrder->bindValue(4, $myOrder->getSoepBroodWit(), PDO::PARAM_BOOL); // soepbrood nog in order
 		$queryOrder->execute();
 
 		$orderId = $pdo->lastInsertId();
+		
 
 		foreach($broodjes as $broodje) {
 
@@ -83,12 +84,23 @@ if([] !== $_POST) {
 			$queryBroodje->bindValue(5, $broodje->getOpmerking(), PARAM::PARAM_STR);
 			$queryBroodje->execute();
 
+			$broodjeId = $pdo->lastInsertId();
+
+			$queryOrderBroodje = $pdo->prepare('INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)');
+			$queryOrderBroodje->bindValue(1, )
+			$queryOrderBroodje->bindValue(2,)
+			$queryOrderBroodje->bindValue(3,)
+			$queryOrderBroodje->execute();
+
 		}
 
 		
 
 
 		$queryOrderBroodje = $pdo->prepare('INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)');
+		$queryOrderBroodje->bindValue(1, )
+		$queryOrderBroodje->bindValue(2,)
+		$queryOrderBroodje->bindValue(3,)
 		$queryOrderBroodje->execute();
 
 		// connectie sluiten ?
