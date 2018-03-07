@@ -29,7 +29,7 @@ if([] !== $_POST) {
 
 		// Per broodje een object van klasse brood instantieren
 
-		$myBrood = New Brood($_POST['smos_'.$x], $_POST['fitness_'.$x], $_POST['type_'.$x], $_POST['grootte_'.$x], $_POST['aantal_'.$x]);
+		$myBrood = New Brood($_POST['smos_'.$x], $_POST['fitness_'.$x], $_POST['type_'.$x], $_POST['grootte_'.$x], $_POST['aantal_'.$x], $_POST['opmerking_'.$x]);
 		$broodjes[] = $myBrood;
 
 	}
@@ -68,7 +68,7 @@ if([] !== $_POST) {
 		$queryOrder->bindValue(1, 1, PDO::PARAM_INT);
 		$queryOrder->bindValue(2, date("Y-m-d H:i:s"), PDO::PARAM_STR);
 		$queryOrder->bindValue(3, $myOrder->getSoep(), PDO::PARAM_BOOL);
-		$queryOrder->bindValue(4, $myOrder->getSoepBroodWit(), PDO::PARAM_BOOL); // soepbrood nog in order
+		$queryOrder->bindValue(4, $myOrder->getSoepBroodWit(), PDO::PARAM_BOOL);
 		$queryOrder->execute();
 
 		$orderId = $pdo->lastInsertId();
@@ -79,7 +79,7 @@ if([] !== $_POST) {
 			$queryBroodje = $pdo->prepare('INSERT INTO broodje ("is_groot", "beleg_id", "supplement_id", "is_wit", "opmerking") VALUES (?, ?, ?, ?, ?)');
 			$queryBroodje->bindValue(1, $broodje->getBaguette(), PDO::PARAM_BOOL);
 			$queryBroodje->bindValue(2, $broodje->getTypeBeleg(), PDO::PARAM_INT);
-			$queryBroodje->bindValue(3, $broodje->getSupplement(), PDO::PARAM_INT); // waar haal ik dit uit
+			$queryBroodje->bindValue(3, $Supplement->getSupplement(), PDO::PARAM_INT); // waar haal ik dit uit
 			$queryBroodje->bindValue(4, $broodje->getFitness(), PDO::PARAM_BOOL);
 			$queryBroodje->bindValue(5, $broodje->getOpmerking(), PARAM::PARAM_STR);
 			$queryBroodje->execute();
@@ -87,21 +87,12 @@ if([] !== $_POST) {
 			$broodjeId = $pdo->lastInsertId();
 
 			$queryOrderBroodje = $pdo->prepare('INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)');
-			$queryOrderBroodje->bindValue(1, )
-			$queryOrderBroodje->bindValue(2,)
-			$queryOrderBroodje->bindValue(3,)
+			$queryOrderBroodje->bindValue(1, $orderId, PDO::PARAM_INT);
+			$queryOrderBroodje->bindValue(2, $broodjeId, PDO::PARAM_INT);
+			$queryOrderBroodje->bindValue(3, $broodje->getAantalBroodjes, PDO::PARAM_INT);
 			$queryOrderBroodje->execute();
 
 		}
-
-		
-
-
-		$queryOrderBroodje = $pdo->prepare('INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)');
-		$queryOrderBroodje->bindValue(1, )
-		$queryOrderBroodje->bindValue(2,)
-		$queryOrderBroodje->bindValue(3,)
-		$queryOrderBroodje->execute();
 
 		// connectie sluiten ?
 		
