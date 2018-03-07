@@ -49,10 +49,10 @@ if(!empty($_SESSION['order'])) {
 	<!-- Test area -->
 	<?php
 
-	foreach ($categorieArr as $categorie) {
+	/*foreach ($categorieArr as $categorie) {
 		echo $categorie['categorie'];
 	}
-
+*/
 	?>
 	
 	<div class="container">
@@ -313,9 +313,20 @@ if(!empty($_SESSION['order'])) {
 												
 												<?php 
 													// SETUP FOR PULLING ALL 'beleg' FROM DB
-													foreach ($belegArr as $beleg) {
-														echo '<option value="' . $beleg['id'] . '">' . $beleg['naam'] . '</option>';
+													
+													foreach($categorieArr as $categorie) {
+														echo '<optgroup label="' . $categorie['categorie'] . '">'; 
+															foreach ($belegArr as $beleg) {
+																if($beleg['categorie_id'] === $categorie['id']) {
+																	echo '<option value="' . $beleg['id'] . '">' . $beleg['naam'] . '</option>';	
+																}
+															}
+														echo '</optgroup>';
 													}
+
+													/*foreach ($belegArr as $beleg) {
+														echo '<option value="' . $beleg['id'] . '">' . $beleg['naam'] . '</option>';
+													}*/
 											?>
 
 
