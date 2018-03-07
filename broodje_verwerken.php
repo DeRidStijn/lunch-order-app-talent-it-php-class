@@ -89,7 +89,7 @@ if([] !== $_POST) {
 			$queryOrderBroodje = $pdo->prepare('INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)');
 			$queryOrderBroodje->bindValue(1, $orderId, PDO::PARAM_INT);
 			$queryOrderBroodje->bindValue(2, $broodjeId, PDO::PARAM_INT);
-			$queryOrderBroodje->bindValue(3,$broodje->getAantalBroodjes, PDO::PARAM_INT);
+			$queryOrderBroodje->bindValue(3, $broodje->getAantalBroodjes, PDO::PARAM_INT);
 			$queryOrderBroodje->execute();
 
 		}
