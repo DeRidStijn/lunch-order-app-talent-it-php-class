@@ -13,9 +13,8 @@ $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<link rel="icon" href="../../../../favicon.ico">
+	<meta name="description" content="Applicatie om bestelde broodjes te beheren">
+	<meta name="author" content="Talent IT PHP Class">
 
 	<title>Broodjes met talent! - Dashboard</title>
 
