@@ -59,7 +59,18 @@ if([] !== $_POST) {
 
 		//$naam = $_POST['naam'];
 
-		$queryOrder = 'INSERT INTO order ("user_id","datum", "soep", "soepbrood_wit") VALUES (?, ?, ?, ?)';
+		/*
+		@TODO: Onderstaande query nakijken met database en Order class
+		*/
+
+		$queryOrder = $pdo->prepare('INSERT INTO order ("user_id","datum", "soep", "soepbrood_wit") VALUES (?, ?, ?, ?)');
+		$queryOrder->bindValue(1, 1, PDO::PARAM_INT);
+		$queryOrder->bindValue(2, date('Y-m-d'), PDO::PARAM_DATE); // checken if database date
+		$queryOrder->bindValue(3, $myOrder->getSoep(), PDO::PARAM_BOOL);
+		$queryOrder->bindValue(4, $myOrder->getSoepBrood(), PDO::PARAM_BOOL); // soepbrood nog in order
+		$queryOrder->execute();
+
+
 		$queryBroodje = 'INSERT INTO broodje ("is_groot", "beleg_id", "supplement_id", "is_wit", "opmerking") VALUES (?, ?, ?, ?, ?)';
 		$queryOrderBroodje ='INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)';
 

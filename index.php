@@ -8,9 +8,12 @@ session_start();
 
 // SETUP FOR PULLING ALL 'beleg' FROM DB
 
-$pdo = new PDO($config['dns'], $config['username'], $config['password'], $config['options']);
+$pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
+
 $stmt = $pdo->prepare('SELECT * FROM beleg');
 $stmt->execute();
+
+$belegArr = $stmt->fetchAll();
 
 $typeBroodjes = ["Preparé", "Krab", "Kaas", "Hesp", "Kaas & Hesp", "Gezond", "Salami", "Kipfilet"];
 
@@ -33,7 +36,15 @@ if(!empty($_SESSION['order'])) {
 	<title>Broodjes met talent!</title>
 </head>
 <body class="bg-light">
+	<!-- Test area -->
+	<?php
 
+	/*while($row = $stmt->fetch()) {
+		echo $row['beleg'];
+	}
+*/
+	?>
+	
 	<div class="container">
 		<div class="py-5 text-center">
 			<img class="d-block mx-auto mb-4" src="https://www.talent-it.be/wp-content/uploads/2017/08/logo-talent-it-orange-2.png" alt="" width="200" height="45">
@@ -234,10 +245,20 @@ if(!empty($_SESSION['order'])) {
 								<div id="addMeType" style="display: none;">
 									<div class="input-group mb-3">
 										<select class="custom-select" id="type_1" name="type_1">
+
+
+											<?php 
+												// SETUP FOR PULLING ALL 'beleg' FROM DB
+												foreach ($belegArr as $beleg) {
+													echo '<option value="' . $beleg['id'] . '">' . $beleg['beleg'] . '</option>';
+												}
+	
+											?>
+
 											<?php
-											foreach ($typeBroodjes as $broodjes) {
+											/*foreach ($typeBroodjes as $broodjes) {
 												echo '<option value="' . $broodjes . '">' . $broodjes . '</option>';
-											}
+											}*/
 											?>
 										</select>
 									</div>
@@ -252,13 +273,24 @@ if(!empty($_SESSION['order'])) {
 											<div class="input-group mb-3">
 												<select class="custom-select" id="type_<?php echo $broodjesteller; ?>" name="type_<?php echo $broodjesteller; ?>">
 													<?php
-													foreach ($typeBroodjes as $broodjes) {
+
+													/*while($row = $stmt->fetch()) {
+
+														echo '<option value="'. $row['id'] . '">' . $row['beleg'] . '</option>';
+
+													}*/	
+
+													foreach ($belegArr as $beleg) {
+														echo '<option value="' . $beleg['id'] . '">' . $beleg['beleg'] . '</option>';
+													}
+
+													/*foreach ($typeBroodjes as $broodjes) {
 														echo '<option value="' . $broodjes . '"';
 														if($broodje->getTypeBeleg() === $broodjes) {
 															echo ' selected';
 														}
 														echo '>' . $broodjes . '</option>';
-													}
+													}*/
 													?>
 												</select>
 											</div>
@@ -271,19 +303,17 @@ if(!empty($_SESSION['order'])) {
 												
 												<?php 
 													// SETUP FOR PULLING ALL 'beleg' FROM DB
-													while($row = $stmt->fetch()) {
-
-														echo '<option value="'.{$row['id']}.'">'.{$row['beleg']}.'</option>';
-
+													foreach ($belegArr as $beleg) {
+														echo '<option value="' . $beleg['id'] . '">' . $beleg['beleg'] . '</option>';
 													}
-												?>
+											?>
 
 
 												<?php
-												foreach ($typeBroodjes as $broodjes) {
+												/*foreach ($typeBroodjes as $broodjes) {
 													echo '<option value="' . $broodjes . '">' . $broodjes . '</option>';
-												}
-												?>
+												}*/
+												?> 
 											</select>
 										</div>
 										<?php
