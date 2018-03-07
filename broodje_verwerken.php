@@ -7,6 +7,7 @@ require_once('Order.php');
 require_once('Validatie.php');
 require_once('file_handler.php');
 require_once __DIR__ . './config.php';
+require_once('User.php');
 
 $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
 
@@ -65,14 +66,30 @@ if([] !== $_POST) {
 
 		$queryOrder = $pdo->prepare('INSERT INTO order ("user_id","datum", "soep", "soepbrood_wit") VALUES (?, ?, ?, ?)');
 		$queryOrder->bindValue(1, 1, PDO::PARAM_INT);
-		$queryOrder->bindValue(2, date('Y-m-d'), PDO::PARAM_DATE); // checken if database date
+		$queryOrder->bindValue(2, date("Y-m-d H:i:s"), PDO::PARAM_STR);
 		$queryOrder->bindValue(3, $myOrder->getSoep(), PDO::PARAM_BOOL);
 		$queryOrder->bindValue(4, $myOrder->getSoepBrood(), PDO::PARAM_BOOL); // soepbrood nog in order
 		$queryOrder->execute();
 
+		$orderId = $pdo->lastInsertId();
 
-		$queryBroodje = 'INSERT INTO broodje ("is_groot", "beleg_id", "supplement_id", "is_wit", "opmerking") VALUES (?, ?, ?, ?, ?)';
-		$queryOrderBroodje ='INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)';
+		foreach($broodjes as $broodje) {
+
+			$queryBroodje = $pdo->prepare('INSERT INTO broodje ("is_groot", "beleg_id", "supplement_id", "is_wit", "opmerking") VALUES (?, ?, ?, ?, ?)');
+			$queryBroodje->bindValue(1, $broodje->getBaguette(), PDO::PARAM_BOOL);
+			$queryBroodje->bindValue(2, $broodje->getTypeBeleg(), PDO::PARAM_INT);
+			$queryBroodje->bindValue(3, $broodje->getSupplement(), PDO::PARAM_INT); // waar haal ik dit uit
+			$queryBroodje->bindValue(4, $broodje->getFitness(), PDO::PARAM_BOOL);
+			$queryBroodje->bindValue(5, $broodje->getOpmerking(), PARAM::PARAM_STR);
+			$queryBroodje->execute();
+
+		}
+
+		
+
+
+		$queryOrderBroodje = $pdo->prepare('INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)');
+		$queryOrderBroodje->execute();
 
 		// connectie sluiten ?
 		
