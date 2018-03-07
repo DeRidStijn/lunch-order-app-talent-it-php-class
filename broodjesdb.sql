@@ -1,5 +1,3 @@
-    SHOW ENGINE INNODB STATUS;
-
     DROP DATABASE IF EXISTS `broodjesapp`;
     CREATE DATABASE `broodjesapp` CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
@@ -57,18 +55,6 @@
         `opmerking` VARCHAR(100) NOT NULL DEFAULT '',
         PRIMARY KEY (`id`)
     ) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
-
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-    `naam` VARCHAR(30) NOT NULL DEFAULT '',
-    `voornaam` VARCHAR(30) NOT NULL DEFAULT '',
-    `password` VARCHAR(255) NOT NULL DEFAULT '',
-    `email` VARCHAR(30) NOT NULL DEFAULT '',
-    `potje` DECIMAL(5,2) UNSIGNED NOT NULL DEFAULT 0,
-    `is_admin` TINYINT UNSIGNED DEFAULT 0,
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB CHARACTER SET 'utf8' COLLATE 'utf8_general_ci';
 
     DROP TABLE IF EXISTS `user`;
     CREATE TABLE `user` (
