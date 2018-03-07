@@ -6,7 +6,7 @@ require_once('Brood.php');
 require_once('Order.php');
 require_once('Validatie.php');
 require_once('file_handler.php');
-require_once __DIR__ . './config.php';
+require_once __DIR__ . '/config.php';
 require_once('User.php');
 
 $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
