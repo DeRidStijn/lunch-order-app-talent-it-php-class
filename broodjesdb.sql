@@ -62,7 +62,7 @@
         `username` VARCHAR(30) NOT NULL DEFAULT '',
         `naam` VARCHAR(30) NOT NULL DEFAULT '',
         `voornaam` VARCHAR(30) NOT NULL DEFAULT '',
-        `password` VARCHAR(30) NOT NULL DEFAULT '',
+        `password` VARCHAR(255) NOT NULL DEFAULT '',
         `email` VARCHAR(30) NOT NULL DEFAULT '',
         `potje` INT UNSIGNED NOT NULL DEFAULT 0,
         `is_admin` TINYINT UNSIGNED DEFAULT 0,
