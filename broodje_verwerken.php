@@ -68,7 +68,7 @@ if([] !== $_POST) {
 		$queryOrder->bindValue(1, 1, PDO::PARAM_INT);
 		$queryOrder->bindValue(2, date("Y-m-d H:i:s"), PDO::PARAM_STR);
 		$queryOrder->bindValue(3, $myOrder->getSoep(), PDO::PARAM_BOOL);
-		$queryOrder->bindValue(4, $myOrder->getSoepBroodWit(), PDO::PARAM_BOOL); // soepbrood nog in order
+		$queryOrder->bindValue(4, $myOrder->getSoepBroodWit(), PDO::PARAM_BOOL);
 		$queryOrder->execute();
 
 		$orderId = $pdo->lastInsertId();
@@ -87,9 +87,9 @@ if([] !== $_POST) {
 			$broodjeId = $pdo->lastInsertId();
 
 			$queryOrderBroodje = $pdo->prepare('INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)');
-			$queryOrderBroodje->bindValue(1, )
-			$queryOrderBroodje->bindValue(2,)
-			$queryOrderBroodje->bindValue(3,)
+			$queryOrderBroodje->bindValue(1, $orderId, PDO::PARAM_INT);
+			$queryOrderBroodje->bindValue(2, $broodjeId, PDO::PARAM_INT);
+			$queryOrderBroodje->bindValue(3,$broodje->getAantalBroodjes, PDO::PARAM_INT);
 			$queryOrderBroodje->execute();
 
 		}
