@@ -1,9 +1,9 @@
 <?php
 
+session_start();
+
 require_once('User.php');
 require_once __DIR__ . '/config.php';
-
-session_start();
 
 $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
 
