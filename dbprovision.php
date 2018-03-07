@@ -49,10 +49,23 @@ foreach ($broodjesData as $broodje) {
     $belegStmt->execute();
 }
 
-$soepenlijst = ['Tomatensoep met balletjes', 'Witloofsoep', 'Heldere kippensoep', 'Pompoensoep', 'Kervelsoep'];
+$soepenlijst = ['Tomatensoep met balletjes', 'Witloofsoep', 'Heldere kippensoep', 'Pompoensoep', 'Kervelsoep', 'Niet beschikbaar', 'Niet beschikbaar'];
 
 foreach ($soepenlijst as $soep) {
     $soepStmt = $pdo->prepare('INSERT INTO `soep` (`soep`) VALUES (?)');
     $soepStmt->bindValue(1, $soep, PDO::PARAM_STR);
     $soepStmt->execute();
+}
+
+$password = password_hash("finesse", PASSWORD_DEFAULT);
+
+$adminStmt = $pdo->prepare('INSERT INTO `user` (`naam`, `voornaam`, `password`, `email`, `potje`, `is_admin`) VALUES (?, ?, ?, ?, ?, ?)');
+$adminStmt->bindValue(1, 'Doe', PDO::PARAM_STR);
+$adminStmt->bindValue(2, 'John', PDO::PARAM_STR);
+$adminStmt->bindValue(3, $password, PDO::PARAM_STR);
+$adminStmt->bindValue(4, 'johndoe@talent.it', PDO::PARAM_STR);
+$adminStmt->bindValue(5, 0);
+$adminStmt->bindValue(6, 1, PDO::PARAM_BOOL);
+if (false === $adminStmt->execute()) {
+    var_dump($adminStmt->errorInfo());
 }
