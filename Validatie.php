@@ -4,7 +4,7 @@ require_once('Brood.php');
 require_once('Order.php');
 require_once('User.php');
 
-//USERVALIDATOR EN SUPPLEMENT VALIDATOR MOETEN NOG IN broodje_verwerken.php GEIMPLEMENTEERD WORDEN
+//USERVALIDATOR, OPMERKINGVALIDATOR EN SUPPLEMENT VALIDATOR MOETEN NOG IN broodje_verwerken.php GEIMPLEMENTEERD WORDEN
 
 class broodValidator extends Brood {
 
