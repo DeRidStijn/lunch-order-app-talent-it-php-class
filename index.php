@@ -49,8 +49,8 @@ if(!empty($_SESSION['order'])) {
 	<!-- Test area -->
 	<?php
 
-	/*foreach ($soepArr as $soep) {
-		echo $soep['soep'];
+	/*foreach ($categorieArr as $categorie) {
+		echo $categorie['categorie'];
 	}
 */
 	?>
@@ -260,7 +260,7 @@ if(!empty($_SESSION['order'])) {
 											<?php 
 												// SETUP FOR PULLING ALL 'beleg' FROM DB
 												foreach ($belegArr as $beleg) {
-													echo '<option value="' . $beleg['id'] . '">' . $beleg['beleg'] . '</option>';
+													echo '<option value="' . $beleg['id'] . '">' . $beleg['naam'] . '</option>';
 												}
 	
 											?>
@@ -291,7 +291,7 @@ if(!empty($_SESSION['order'])) {
 													}*/	
 
 													foreach ($belegArr as $beleg) {
-														echo '<option value="' . $beleg['id'] . '">' . $beleg['beleg'] . '</option>';
+														echo '<option value="' . $beleg['id'] . '">' . $beleg['naam'] . '</option>';
 													}
 
 													/*foreach ($typeBroodjes as $broodjes) {
@@ -313,9 +313,20 @@ if(!empty($_SESSION['order'])) {
 												
 												<?php 
 													// SETUP FOR PULLING ALL 'beleg' FROM DB
-													foreach ($belegArr as $beleg) {
-														echo '<option value="' . $beleg['id'] . '">' . $beleg['beleg'] . '</option>';
+													
+													foreach($categorieArr as $categorie) {
+														echo '<optgroup label="' . $categorie['categorie'] . '">'; 
+															foreach ($belegArr as $beleg) {
+																if($beleg['categorie_id'] === $categorie['id']) {
+																	echo '<option value="' . $beleg['id'] . '">' . $beleg['naam'] . '</option>';	
+																}
+															}
+														echo '</optgroup>';
 													}
+
+													/*foreach ($belegArr as $beleg) {
+														echo '<option value="' . $beleg['id'] . '">' . $beleg['naam'] . '</option>';
+													}*/
 											?>
 
 
