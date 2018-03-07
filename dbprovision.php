@@ -56,3 +56,12 @@ foreach ($soepenlijst as $soep) {
     $soepStmt->bindValue(1, $soep, PDO::PARAM_STR);
     $soepStmt->execute();
 }
+
+$adminStmt = $pdo->prepare('INSERT INTO `user` (`naam`, `voornaam`, `password`, `email`, `potje`, `is_admin`) VALUES (?, ?, ?, ?, ?, ?)');
+$adminStmt->bindValue(1, 'Doe', PDO::PARAM_STR);
+$adminStmt->bindValue(2, 'John', PDO::PARAM_STR);
+$adminStmt->bindValue(3, password_hash("finesse", PASSWORD_DEFAULT), PDO::PARAM_STR);
+$adminStmt->bindValue(4, 'johndoe@talent.it', PDO::PARAM_STR);
+$adminStmt->bindValue(5, 0);
+$adminStmt->bindValue(6, 1, PDO::PARAM_BOOL);
+$adminStmt->execute();
