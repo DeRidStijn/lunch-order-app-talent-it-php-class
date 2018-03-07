@@ -94,15 +94,6 @@ if([] !== $_POST) {
 
 		}
 
-		
-
-
-		$queryOrderBroodje = $pdo->prepare('INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)');
-		$queryOrderBroodje->bindValue(1, )
-		$queryOrderBroodje->bindValue(2,)
-		$queryOrderBroodje->bindValue(3,)
-		$queryOrderBroodje->execute();
-
 		// connectie sluiten ?
 		
 
