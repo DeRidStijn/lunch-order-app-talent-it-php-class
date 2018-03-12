@@ -41,14 +41,14 @@
 				<div class="row">
 					<div class="col-md-12 mb-3">
 						<label for="email" class="sr-only">Email</label>
-						<input type="email" class="form-control" style="padding: 10px;" id="email" placeholder="Email" required autofocus>
+						<input type="email" class="form-control" style="padding: 10px;" name="email" id="email" placeholder="Email" required autofocus>
 						<div class="invalid-feedback">
 							Gelieve een geldig emailadres in te geven.
 						</div>
 					</div>
 					<div class="col-md-12 mb-3">
 						<label for="password" class="sr-only">Paswoord</label>
-						<input type="password" class="form-control" style="padding: 10px;" id="password" placeholder="Paswoord" required>
+						<input type="password" class="form-control" style="padding: 10px;" name="password" id="password" placeholder="Paswoord" required>
 						<div class="invalid-feedback">
 							Gelieve een paswoord in te vullen.
 						</div>

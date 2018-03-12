@@ -7,12 +7,11 @@ require_once __DIR__ . '/config.php';
 
 $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
 
-if([] !== $_POST) {
+if(isset($_POST)) {
 
 	$email = $_POST['email'];
 	$password = $_POST['password'];
-
-	$qryLogin = $pdo->prepare('SELECT * FROM `user` WHERE email = ?');
+	$qryLogin = $pdo->prepare('SELECT * FROM broodjesapp.user WHERE email = ?');
 	$qryLogin->bindValue(1, $email, PDO::PARAM_STR);
 	
 	if(false === $qryLogin->execute()) {
