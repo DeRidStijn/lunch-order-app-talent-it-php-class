@@ -11,7 +11,7 @@ if(isset($_POST)) {
 
 	$email = $_POST['email'];
 	$password = $_POST['password'];
-	$qryLogin = $pdo->prepare('SELECT * FROM broodjesapp.user WHERE email = ?');
+	$qryLogin = $pdo->prepare('SELECT * FROM broodjesapp.user WHERE email = ? LIMIT 1');
 	$qryLogin->bindValue(1, $email, PDO::PARAM_STR);
 	
 	if(false === $qryLogin->execute()) {
@@ -20,7 +20,7 @@ if(isset($_POST)) {
 		Header('Location: login.php');
 	}
 
-	$loginArray = $qryLogin->fetchAll();
+	$loginArray = $qryLogin->fetch();
 
 	$hash = $loginArray['password'];
 
