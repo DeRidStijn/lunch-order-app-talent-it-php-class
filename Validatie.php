@@ -147,7 +147,7 @@ class orderValidator extends Order {
 			$this->errors['soep'] = 'Fout bij het selecteren van soep';
 			return false;
 		}
-		if(!$validators['Supplement']($this->supplement->getSupplement())) {
+		if(!$validators['Supplement']($this->order->getSupplement())) {
 			$this->errors['supplement'] = 'Fout bij het selecteren van supplement';
 			return false;
 		}
