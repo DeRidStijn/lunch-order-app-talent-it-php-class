@@ -90,6 +90,25 @@ if(!empty($_SESSION['order'])) {
 			}
 		?>
 		<div id="copyMe" style="display: none;">
+			<div class="titles">
+				<div class="row">
+					<div class="col-md-2">
+						<label for="aantal_1">Aantal</label>
+					</div>
+					<div class="col-md-2">
+						<label for="grootte_1">Grootte</label>
+					</div>
+					<div class="col-md-2">
+						<label for="smos_1">Smos</label>
+					</div>
+					<div class="col-md-2">
+						<label for="fitness_1">Wit / Bruin</label>
+					</div>
+					<div class="col-md-4">
+						<label for="type_1">Type</label>
+					</div>
+				</div>
+			</div>
 			<div class="row">
 				<div class="col-md-2 mb-3">
 					<input type="number" name="aantal_XXX" class="form-control mb-3" id="aantal_XXX" placeholder="1" value="1" required="">
@@ -158,25 +177,6 @@ if(!empty($_SESSION['order'])) {
 			<div class="row">
 				<div class="col-md-12 order-md-1">
 					<h4 class="mb-3">Kies je broodjes</h4>
-					<div class="titles">
-						<div class="row">
-							<div class="col-md-2">
-								<label for="aantal_1">Aantal</label>
-							</div>
-							<div class="col-md-2">
-								<label for="grootte_1">Grootte</label>
-							</div>
-							<div class="col-md-2">
-								<label for="smos_1">Smos</label>
-							</div>
-							<div class="col-md-2">
-								<label for="fitness_1">Wit / Bruin</label>
-							</div>
-							<div class="col-md-4">
-								<label for="type_1">Type</label>
-							</div>
-						</div>
-					</div>
 					<div id="vulBroodjes">
 						<?php
 
@@ -185,6 +185,25 @@ if(!empty($_SESSION['order'])) {
 							foreach ($myOrder->getBroodjes() as $broodje) {
 								$broodjesteller++;
 								?>
+								<div class="titles">
+									<div class="row">
+										<div class="col-md-2">
+											<label for="aantal_1">Aantal</label>
+										</div>
+										<div class="col-md-2">
+											<label for="grootte_1">Grootte</label>
+										</div>
+										<div class="col-md-2">
+											<label for="smos_1">Smos</label>
+										</div>
+										<div class="col-md-2">
+											<label for="fitness_1">Wit / Bruin</label>
+										</div>
+										<div class="col-md-4">
+											<label for="type_1">Type</label>
+										</div>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-md-2 mb-3">
 										<input type="number" name="aantal_<?php echo $broodjesteller; ?>" class="form-control mb-3" id="aantal_<?php echo $broodjesteller; ?>" placeholder="1" value="1" required="">
