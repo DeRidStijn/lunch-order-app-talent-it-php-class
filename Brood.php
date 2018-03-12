@@ -11,7 +11,7 @@ class Brood
     protected $opmerking;
     protected $supplement;
 
-    function __construct(bool $smos, bool $fitness, int $typeBeleg, bool $baguette, int $aantalBroodjes, string $opmerking, Supplement $supplement)
+    function __construct(bool $smos, bool $fitness, int $typeBeleg, bool $baguette, int $aantalBroodjes, string $opmerking, int $supplement)
     {
         $this->smos = $smos;
         $this->fitness = $fitness;

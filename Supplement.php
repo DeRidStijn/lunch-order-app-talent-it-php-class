@@ -12,7 +12,7 @@ class Supplement
 
     public function getSupplement() : int
     {
-        return $supplement;
+        return $this->supplement;
     }
 }
 
