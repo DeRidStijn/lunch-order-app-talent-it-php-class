@@ -4,13 +4,13 @@ class Supplement {
     protected $prijs;
     protected $supplement;
 
-    function __construct(float $prijs, string $supplement) 
+    function __construct(float $prijs, int $supplement) 
     {
         $this->prijs = $prijs;
         $this->supplement = $supplement;
     }
 
-    public function getSupplement() : string
+    public function getSupplement() : int
     {
         return $supplement;
     }
