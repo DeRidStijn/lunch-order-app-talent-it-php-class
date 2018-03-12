@@ -279,14 +279,26 @@ if(!empty($_SESSION['order'])) {
 
 					<hr class="md4" />
 
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" id="soepvdag" name="soepvdag" <?php
-							if(!empty($myOrder)) {
-								if($myOrder->getSoep()) {
-									echo 'checked';
-								}
-							} ?>>
-						<label class="custom-control-label" for="soepvdag">Ik wil de soep van de dag (<?php echo $soep['soep']; ?>).</label>
+					<div class="form-group row">
+						<div class="col-md-5" style="padding-top: 8px;">
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" style="margin-top: 8px;" class="custom-control-input" id="soepvdag" name="soepvdag" <?php
+									if(!empty($myOrder)) {
+										if($myOrder->getSoep()) {
+											echo 'checked';
+										}
+									} ?>>
+								<label class="custom-control-label" for="soepvdag">Ik wil de soep van de dag (<?php echo $soep['soep']; ?>).</label>
+							</div>
+						</div>
+
+						<label for="brod" class="col-sm-3 col-form-label">Wit / Bruin brood bij soep</label>
+						<div class="col-sm-4">
+							<select class="custom-select" id="brod" name="brod">
+								<option value="1" selected>Wit</option>
+								<option value="0">Bruin</option>
+							</select>
+						</div>
 					</div>
 
 					<hr class="md4" />
