@@ -80,7 +80,7 @@ if([] !== $_POST) {
 			$queryBroodje = $pdo->prepare('INSERT INTO broodje ("is_groot", "beleg_id", "supplement_id", "is_wit", "opmerking") VALUES (?, ?, ?, ?, ?)');
 			$queryBroodje->bindValue(1, $broodje->getBaguette(), PDO::PARAM_BOOL);
 			$queryBroodje->bindValue(2, $broodje->getTypeBeleg(), PDO::PARAM_INT);
-			$queryBroodje->bindValue(3, $supplement->getSupplement(), PDO::PARAM_INT); // waar haal ik dit uit
+			$queryBroodje->bindValue(3, $broodje->getSupplement(), PDO::PARAM_INT); // waar haal ik dit uit
 			$queryBroodje->bindValue(4, $broodje->getFitness(), PDO::PARAM_BOOL);
 			$queryBroodje->bindValue(5, $broodje->getOpmerking(), PDO::PARAM_STR);
 			$queryBroodje->execute();
