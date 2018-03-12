@@ -28,9 +28,7 @@ if([] !== $_POST) {
 
 	for($x = 1; $x <= $aantalbroodjes; $x++) {
 
-		// Per broodje een object van klasse brood instantieren
-		$supplement = New Supplement(1); // id meegeven
-		$myBrood = New Brood($_POST['smos_'.$x], $_POST['fitness_'.$x], $_POST['type_'.$x], $_POST['grootte_'.$x], $_POST['aantal_'.$x], $_POST['opmerking_'.$x], 1); // @TODO: opmerking nog aanpassen naar form input
+	$myBrood = New Brood($_POST['smos_'.$x], $_POST['fitness_'.$x], $_POST['type_'.$x], $_POST['grootte_'.$x], $_POST['aantal_'.$x], $_POST['opmerking_'.$x]); // @TODO: opmerking nog aanpassen naar form input
 		$broodjes[] = $myBrood;
 
 	}
@@ -79,12 +77,11 @@ if([] !== $_POST) {
 
 		foreach($broodjes as $broodje) {
 
-			$queryBroodje = $pdo->prepare('INSERT INTO broodjesapp.broodje (is_groot, beleg_id, supplement_id, is_wit, opmerking) VALUES (?, ?, ?, ?, ?)');
+			$queryBroodje = $pdo->prepare('INSERT INTO broodjesapp.broodje (is_groot, beleg_id, is_wit, opmerking) VALUES (?, ?, ?, ?)');
 			$queryBroodje->bindValue(1, $broodje->getBaguette(), PDO::PARAM_BOOL);
 			$queryBroodje->bindValue(2, $broodje->getTypeBeleg(), PDO::PARAM_INT);
-			$queryBroodje->bindValue(3, $broodje->getSupplement(), PDO::PARAM_INT); // waar haal ik dit uit
-			$queryBroodje->bindValue(4, $broodje->getFitness(), PDO::PARAM_BOOL);
-			$queryBroodje->bindValue(5, $broodje->getOpmerking(), PDO::PARAM_STR);
+			$queryBroodje->bindValue(3, $broodje->getFitness(), PDO::PARAM_BOOL);
+			$queryBroodje->bindValue(4, $broodje->getOpmerking(), PDO::PARAM_STR);
 			if(false === $queryBroodje->execute()){
 				var_dump($queryBroodje->errorInfo());
 			}
@@ -99,7 +96,38 @@ if([] !== $_POST) {
 				var_dump($queryOrderBroodje->errorInfo());
 			}
 
-		}
+			// Per broodje een object van klasse brood instantieren
+			$supplement = New Supplement(1); // id meegeven
+
+			$supplement_id = 0;
+			
+			$queryBroodjeSupplement = $pdo->prepare('INSERT INTO broodjesapp.broodje_supplement (broodje_id, supplement_id) VALUES (?, ?)');
+				for($x = 1; $x <= $aantalbroodjes; $x++) {
+					if($_POST['grootte_'.$x] == 1 && $_POST['smos_'.$x] == 1) {
+						$supplement_id = 1;
+						$queryBroodjeSupplement->bindValue(1, $broodjeId, PDO::PARAM_INT);
+						$queryBroodjeSupplement->bindValue(2, $supplement_id, PDO::PARAM_INT);
+						$queryBroodjeSupplement->execute();	
+					} elseif($_POST['grootte_'.$x] == 0 && $_POST['smos_'.$x] == 1) {
+						$supplement_id = 2;	
+						$queryBroodjeSupplement->bindValue(1, $broodjeId, PDO::PARAM_INT);
+						$queryBroodjeSupplement->bindValue(2, $supplement_id, PDO::PARAM_INT);
+						$queryBroodjeSupplement->execute();
+					}
+					if(isset($_POST['brood_'.$x.'_supplement_1']) && 'on' === $_POST['brood_'.$x.'_supplement_1']) {
+						$supplement_id = 3;	
+						$queryBroodjeSupplement->bindValue(1, $broodjeId, PDO::PARAM_INT);
+						$queryBroodjeSupplement->bindValue(2, $supplement_id, PDO::PARAM_INT);
+						$queryBroodjeSupplement->execute();
+					}
+					if(isset($_POST['brood_'.$x.'_supplement_2']) && 'on' === $_POST['brood_'.$x.'_supplement_2']) {
+						$supplement_id = 4;
+						$queryBroodjeSupplement->bindValue(1, $broodjeId, PDO::PARAM_INT);
+						$queryBroodjeSupplement->bindValue(2, $supplement_id, PDO::PARAM_INT);
+						$queryBroodjeSupplement->execute();
+					}
+				}
+			}
 		// connectie sluiten ?
     	//$myFileHandler = New FileHandler($myOrder);
 		//$myFileHandler->create();

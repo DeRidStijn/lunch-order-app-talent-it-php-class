@@ -49,7 +49,7 @@
     CREATE TABLE `broodje` (
         `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
         `beleg_id` INT UNSIGNED NOT NULL DEFAULT 0,
-        `supplement_id` INT UNSIGNED NOT NULL DEFAULT 0,
+        /*`supplement_id` INT UNSIGNED NOT NULL DEFAULT 0,*/
         `is_wit` TINYINT UNSIGNED DEFAULT 0,
         `is_groot` TINYINT UNSIGNED DEFAULT 0,
         `opmerking` VARCHAR(100) NOT NULL DEFAULT '',

@@ -9,17 +9,17 @@ class Brood
     protected $baguette;
     protected $aantalBroodjes;
     protected $opmerking;
-    protected $supplement;
-
-    function __construct(bool $smos, bool $fitness, int $typeBeleg, bool $baguette, int $aantalBroodjes, string $opmerking, int $supplement)
+/*    protected $supplement;
+*/
+    function __construct(bool $smos, bool $fitness, int $typeBeleg, bool $baguette, int $aantalBroodjes, string $opmerking)
     {
         $this->smos = $smos;
         $this->fitness = $fitness;
         $this->typeBeleg = $typeBeleg;
         $this->baguette = $baguette;
         $this->aantalBroodjes = $aantalBroodjes;
-        $this->supplement = $supplement;
-        $this->opmerking = $opmerking;
+/*        $this->supplement = $supplement;
+*/        $this->opmerking = $opmerking;
     }
     
     public function getSmos() : bool
@@ -53,10 +53,10 @@ class Brood
         return $this->opmerking;
     }
 
-    function getSupplement() : int
+    /*function getSupplement() : int
     {
         return $this->supplement;
-    }
+    }*/
 }
  
 

@@ -60,13 +60,13 @@ class broodValidator extends Brood {
 				}
 				return true;
 			},
-			'Supplement' => function($supplement) {
+			/*'Supplement' => function($supplement) {
 				if(!is_int($supplement)) {
 					$this->errors['supplement'] = 'Foute optie voor \'supplement\'';
 					return false;
 				}
 				return true;
-		    },
+		    },*/
 			'Opmerking' => function($opmerking) {
 				if(!is_string($opmerking) && !ctype_alnum($opmerking)) {
 					$this->errors['opmerking'] = 'Foutieve waarde voor \'opmerking\'';
@@ -95,10 +95,10 @@ class broodValidator extends Brood {
 			$this->errors['type'] = 'Type is niet correct';
 			return false;
 		}
-		if(!$validators['Supplement']($this->brood->getSupplement())) {
+		/*if(!$validators['Supplement']($this->brood->getSupplement())) {
 			$this->errors['supplement'] = 'Fout bij het selecteren van supplement';
 			return false;
-		}
+		}*/
 		if(!$validators['Opmerking']($this->brood->getOpmerking())) {
 			$this->errors['opmerking'] = 'Opmerking is foutief';
 			return false;
