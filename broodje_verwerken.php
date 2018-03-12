@@ -8,6 +8,7 @@ require_once('Validatie.php');
 require_once('file_handler.php');
 require_once __DIR__ . '/config.php';
 require_once('User.php');
+require_once('Supplement.php');
 
 $pdo = new PDO($config['dsn'], $config['username'], $config['password'], $config['options']);
 
@@ -17,7 +18,7 @@ if([] !== $_POST) {
 
 	$soepvdag = false;
 
-	if('on' === $_POST['soepvdag']) {
+	if(isset($_POST['soepvdag']) && 'on' === $_POST['soepvdag']) {
 		$soepvdag = true;
 	}
 
@@ -28,15 +29,15 @@ if([] !== $_POST) {
 	for($x = 1; $x <= $aantalbroodjes; $x++) {
 
 		// Per broodje een object van klasse brood instantieren
-
-		$myBrood = New Brood($_POST['smos_'.$x], $_POST['fitness_'.$x], $_POST['type_'.$x], $_POST['grootte_'.$x], $_POST['aantal_'.$x], $_POST['supplement_' . $x],  ""); // @TODO: opmerking nog aanpassen naar form input
+		$supplement = New Supplement(1); // id meegeven
+		$myBrood = New Brood($_POST['smos_'.$x], $_POST['fitness_'.$x], $_POST['type_'.$x], $_POST['grootte_'.$x], $_POST['aantal_'.$x], $_POST['opmerking_'.$x], 1); // @TODO: opmerking nog aanpassen naar form input
 		$broodjes[] = $myBrood;
 
 	}
 
 	// Een order aanmaken met oa naam, soep en een array van het object broodjes
 
-	$myOrder = New Order($_POST['naam'], $soepvdag, $broodjes, 0); // @TODO: 0 vervangen door brood type wit of bruin
+	$myOrder = New Order('Wim', $soepvdag, $broodjes, 0); // @TODO: 0 vervangen door brood type wit of bruin
 
 	$_SESSION['order'] = $myOrder;
 
