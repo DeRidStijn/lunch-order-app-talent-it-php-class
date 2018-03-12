@@ -26,12 +26,16 @@ $orderArray = $qryOrder->fetchAll();
 
 foreach ($orderArray as $index => $order) {
 	$qryBroodjes = $pdo->prepare('SELECT ob.aantal, 
-										 b.beleg_id, 
+										 blg.naam AS beleg,
 										 b.is_wit, 
 										 b.is_groot, 
-										 b.opmerking
+										 b.opmerking,
+										 s.supplement
 								  FROM `order_broodje` AS ob
 								  LEFT JOIN `broodje` AS b ON b.id = ob.broodje_id
+								  LEFT JOIN `broodje_supplement` AS bs ON bs.broodje_id = b.id
+								  LEFT JOIN `supplement` AS s ON s.id = bs.supplement_id
+								  LEFT JOIN `beleg` AS blg ON blg.id = b.beleg_id
 								  WHERE ob.order_id = ?
 								  ORDER BY ob.broodje_id ASC');
 
@@ -90,7 +94,7 @@ foreach ($orderArray as $index => $order) {
 					} else {
 						echo 'bruin ';
 					}
-					echo '&nbsp;<em>(Opmerking: ' . $broodje['opmerking'] . ')</em> - &euro; 3.50<br />';
+					echo $broodje['beleg'] . '&nbsp;<em>(Opmerking: ' . $broodje['opmerking'] . ')</em> - &euro; 3.50<br />';
 				}
 				echo '</td><td>TOTAALPRIJS</td></tr>';
 			}
