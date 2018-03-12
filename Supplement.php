@@ -1,25 +1,19 @@
 <?php
 
-class Supplement {
-    protected $prijs;
+class Supplement
+{
+    //protected $prijs;
     protected $supplement;
 
-    function __construct(float $prijs, string $supplement) 
+    function __construct(int $supplement) 
     {
-        $this->prijs = $prijs;
         $this->supplement = $supplement;
     }
 
-    public function getSupplement() : string
+    public function getSupplement() : int
     {
         return $supplement;
     }
-
-    public function getPrijs() : float 
-    {
-        return $prijs;
-    }
-
 }
 
 ?>

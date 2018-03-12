@@ -1,4 +1,5 @@
 <?php
+require_once('Supplement.php');
 
 class Brood
 {
@@ -8,14 +9,16 @@ class Brood
     protected $baguette;
     protected $aantalBroodjes;
     protected $opmerking;
+    protected $supplement;
 
-    function __construct(bool $smos, bool $fitness, int $typeBeleg, bool $baguette, int $aantalBroodjes, string $opmerking)
+    function __construct(bool $smos, bool $fitness, int $typeBeleg, bool $baguette, int $aantalBroodjes, string $opmerking, Supplement $supplement)
     {
         $this->smos = $smos;
         $this->fitness = $fitness;
         $this->typeBeleg = $typeBeleg;
         $this->baguette = $baguette;
         $this->aantalBroodjes = $aantalBroodjes;
+        $this->supplement = $supplement;
         $this->opmerking = $opmerking;
     }
     
@@ -48,6 +51,11 @@ class Brood
     public function getOpmerking() : string
     {
         return $this->opmerking;
+    }
+
+    function getSupplement() : int
+    {
+        return $this->supplement;
     }
 }
  
