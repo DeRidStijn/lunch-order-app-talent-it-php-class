@@ -65,7 +65,7 @@ if([] !== $_POST) {
 		@TODO: Onderstaande query nakijken met database en Order class
 		*/
 
-		$queryOrder = $pdo->prepare('INSERT INTO order ("user_id","datum", "soep", "soepbrood_wit") VALUES (?, ?, ?, ?)');
+		$queryOrder = $pdo->prepare('INSERT INTO order (user_id, datum, soep, soepbrood_wit) VALUES (?, ?, ?, ?)');
 		$queryOrder->bindValue(1, 1, PDO::PARAM_INT);
 		$queryOrder->bindValue(2, date("Y-m-d H:i:s"), PDO::PARAM_STR);
 		$queryOrder->bindValue(3, $myOrder->getSoep(), PDO::PARAM_BOOL);
@@ -79,7 +79,7 @@ if([] !== $_POST) {
 
 		foreach($broodjes as $broodje) {
 
-			$queryBroodje = $pdo->prepare('INSERT INTO broodje ("is_groot", "beleg_id", "supplement_id", "is_wit", "opmerking") VALUES (?, ?, ?, ?, ?)');
+			$queryBroodje = $pdo->prepare('INSERT INTO broodje (is_groot, beleg_id, supplement_id, is_wit, opmerking) VALUES (?, ?, ?, ?, ?)');
 			$queryBroodje->bindValue(1, $broodje->getBaguette(), PDO::PARAM_BOOL);
 			$queryBroodje->bindValue(2, $broodje->getTypeBeleg(), PDO::PARAM_INT);
 			$queryBroodje->bindValue(3, $broodje->getSupplement(), PDO::PARAM_INT); // waar haal ik dit uit
@@ -91,7 +91,7 @@ if([] !== $_POST) {
 
 			$broodjeId = $pdo->lastInsertId();
 
-			$queryOrderBroodje = $pdo->prepare('INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)');
+			$queryOrderBroodje = $pdo->prepare('INSERT INTO order_broodje(order_id, broodje_id, aantal) VALUES (?, ?, ?)');
 			$queryOrderBroodje->bindValue(1, $orderId, PDO::PARAM_INT);
 			$queryOrderBroodje->bindValue(2, $broodjeId, PDO::PARAM_INT);
 			$queryOrderBroodje->bindValue(3, $broodje->getAantalBroodjes(), PDO::PARAM_INT);
