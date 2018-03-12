@@ -28,7 +28,7 @@
             return $this->naam;
         }
 
-        function getSoepBrood() : bool 
+        function getSoepBroodWit() : bool 
         {
             return $this->soepBroodWit;
         }
