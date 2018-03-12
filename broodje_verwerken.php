@@ -70,7 +70,9 @@ if([] !== $_POST) {
 		$queryOrder->bindValue(2, date("Y-m-d H:i:s"), PDO::PARAM_STR);
 		$queryOrder->bindValue(3, $myOrder->getSoep(), PDO::PARAM_BOOL);
 		$queryOrder->bindValue(4, $myOrder->getSoepBroodWit(), PDO::PARAM_BOOL);
-		$queryOrder->execute();
+		if(false === $queryOrder->execute()){
+			var_dump($queryOrder->errorInfo());
+		}
 
 		$orderId = $pdo->lastInsertId();
 		
@@ -83,15 +85,19 @@ if([] !== $_POST) {
 			$queryBroodje->bindValue(3, $broodje->getSupplement(), PDO::PARAM_INT); // waar haal ik dit uit
 			$queryBroodje->bindValue(4, $broodje->getFitness(), PDO::PARAM_BOOL);
 			$queryBroodje->bindValue(5, $broodje->getOpmerking(), PDO::PARAM_STR);
-			$queryBroodje->execute();
+			if(false === $queryOrder->execute()){
+				var_dump($queryOrder->errorInfo());
+			}
 
 			$broodjeId = $pdo->lastInsertId();
 
 			$queryOrderBroodje = $pdo->prepare('INSERT INTO order_broodje("order_id", "broodje_id", "aantal") VALUES (?, ?, ?)');
 			$queryOrderBroodje->bindValue(1, $orderId, PDO::PARAM_INT);
 			$queryOrderBroodje->bindValue(2, $broodjeId, PDO::PARAM_INT);
-			$queryOrderBroodje->bindValue(3, $broodje->getAantalBroodjes, PDO::PARAM_INT);
-			$queryOrderBroodje->execute();
+			$queryOrderBroodje->bindValue(3, $broodje->getAantalBroodjes(), PDO::PARAM_INT);
+			if(false === $queryOrder->execute()){
+				var_dump($queryOrder->errorInfo());
+			}
 
 		}
 		// connectie sluiten ?
@@ -99,7 +105,7 @@ if([] !== $_POST) {
 		//$myFileHandler->create();
 
 		$_SESSION['success'] = 'De broodjes zijn succesvol bestelt.';
-		Header('Location: index.php');
+		//Header('Location: index.php');
 	} else {
 		$_SESSION['errors'] = $errors;
         Header('Location: index.php');
