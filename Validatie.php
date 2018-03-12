@@ -3,6 +3,7 @@
 require_once('Brood.php');
 require_once('Order.php');
 require_once('User.php');
+require_once('Supplement.php');
 
 //USERVALIDATOR, OPMERKINGVALIDATOR EN SUPPLEMENT VALIDATOR MOETEN NOG IN broodje_verwerken.php GEIMPLEMENTEERD WORDEN
 
