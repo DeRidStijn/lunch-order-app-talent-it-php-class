@@ -30,18 +30,36 @@ foreach ($orderArray as $index => $order) {
 										 b.is_wit, 
 										 b.is_groot, 
 										 b.opmerking,
-										 s.supplement
+										 b.id
 								  FROM `order_broodje` AS ob
 								  LEFT JOIN `broodje` AS b ON b.id = ob.broodje_id
-								  LEFT JOIN `broodje_supplement` AS bs ON bs.broodje_id = b.id
-								  LEFT JOIN `supplement` AS s ON s.id = bs.supplement_id
 								  LEFT JOIN `beleg` AS blg ON blg.id = b.beleg_id
 								  WHERE ob.order_id = ?
 								  ORDER BY ob.broodje_id ASC');
 
+	
+
 	$qryBroodjes->bindValue(1, $order['id'], PDO::PARAM_INT);
 	$qryBroodjes->execute();
-	$broodjesArray = $qryBroodjes->fetchAll();
+
+	$broodjesArray = [];
+
+	while($row = $qryBroodjes->fetch()) 
+	{
+		$qrySupplementen = $pdo->prepare('SELECT s.supplement 
+		FROM `supplement` AS s 
+		LEFT JOIN `broodje_supplement` AS bs ON bs.supplement_id = s.id
+		WHERE bs.broodje_id = ? ');
+
+		$qrySupplementen->bindValue(1, $row['id'], PDO::PARAM_INT);
+		$qrySupplementen->execute();
+		$row['supplementen'] = $qrySupplementen->fetchAll();
+
+		$broodjesArray[] = $row;
+
+	}
+
+	//$broodjesArray = $qryBroodjes->fetchAll();
 
 	$orderArray[$index]['broodjes'] = $broodjesArray;
 }
@@ -95,6 +113,10 @@ foreach ($orderArray as $index => $order) {
 						echo 'bruin ';
 					}
 					echo $broodje['beleg'] . '&nbsp;<em>(Opmerking: ' . $broodje['opmerking'] . ')</em> - &euro; 3.50<br />';
+					foreach($broodje['supplementen'] as $supp) {
+						//echo $supp;
+						echo 'Supplement ' . $supp['supplement'] . '<br />';
+					}
 				}
 				echo '</td><td>TOTAALPRIJS</td></tr>';
 			}
