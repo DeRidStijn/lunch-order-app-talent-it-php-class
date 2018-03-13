@@ -4,6 +4,8 @@ broodje bij soep
 supplement toevoegen aan selectie
 opmerking toevoegen
 
+validatie soep input !
+
 
 broodje_verwerken.php:
 
