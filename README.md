@@ -15,7 +15,7 @@ Ik heb voor jullie de slides klaargezet zodat jullie die kunnen downloaden.
 Vermits jullie maandag op jullie eigen aangewezen zijn en ik remote via Slack bereikbaar ben om vragen te beantwoorden heb ik ook een opdracht uitgewerkt waar we afgelopen week over gesproken hebben: de broodjes bestel app.
 
 ## De opdracht
-
+Kunnen we een pull request accepteren? We'll find out soon
 Bouw een web applicatie in PHP die kan gebruikt worden door Talent-IT om dagdagelijks de bestelling voor broodjes en soep van de dag te ontvangen.
 
 ## De GitHub Link
